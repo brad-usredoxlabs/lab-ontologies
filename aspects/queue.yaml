@@ -80,7 +80,15 @@ aspects:
   - id: nest-products
     title: Nest products (tips, tubes, reservoirs)
     ontology: lwo
-    status: pending
+    status: done
+    note: >
+      No new classes: PLR resources/nest/ holds exactly 5
+      constructors (4 SBS trough plates 360101-360104, one 2.2 mL
+      U-bottom deep-well 503062); the crosswalk's nest tip/tube/alu/
+      reservoir rows never existed (git pickaxe); NEST tube racks +
+      alu blocks live in opentrons/tube_racks.py; refined defs of
+      LWO:0000117/118/130 with NEST catalog numbers; new NEST
+      crosswalk section; corrected PLR table + gap table.
     detail: >
       Research the Nest product line as represented in
       pylabrobot/resources/nest/ (122-constructor inventory: tips

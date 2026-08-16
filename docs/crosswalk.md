@@ -8,7 +8,7 @@ catalog (computable-lab) and reference these classes.
 
 ## Layers
 
-1. **LWO (this repo)** — the concept DAG. ~71 classes, stable.
+1. **LWO (this repo)** — the concept DAG. ~74 classes, stable.
    Answers: *what kind of thing is this?*
 2. **Product catalog (computable-lab)** — one record per vendor SKU.
    Answers: *which specific product is this, what are its properties,
@@ -58,24 +58,24 @@ OpenTrons `shared-data` repo. Category coverage in LWO:
 | `aluminum-block-24` / `aluminum-block-96` | LWO:0000135 / LWO:0000136 |
 | `plate-lid` / `plate-seal-96` | LWO:0000161 / LWO:0000162 |
 
-## PyLabRobot resources (122 constructors, 27 vendors)
+## PyLabRobot resources (564 constructors, 27 vendor packages)
 
 PLR constructors live in `pylabrobot/resources/<vendor>/`. Each
 constructor returns a `Liquidware` (a labware instance with wells and
-volumes). Coverage by category:
+volumes). Inventory verified against PLR `main` @ `be6becfb8`
+(2026-05-22). Coverage by category:
 
 | PLR category (example constructors) | LWO class |
 |---|---|
-| `nest` tips: `Tip_Rack_1000`, `Tip_Rack_300`, `Tip_Rack_10`, … | LWO:0000145 96-position tip rack |
-| `opentrons` tips: `Tiprack_96_1000`, `Tiprack_96_300`, `Tiprack_96_50`, `Tiprack_96_10` | LWO:0000145 96-position tip rack |
-| `nest` tubes: `Tubes_15ml`, `Tubes_50ml`, `Tubes_1ml`, `Tubes_2ml` (rack families) | LWO:0000151 tube rack |
-| `nest` plates: `Plate_96_2ml`, `Plate_96_120ul`, `Plate_96_500ul` | LWO:0000126 / LWO:0000130 / LWO:0000128 |
-| `nest` blocks: `AluBlock_24_1ml`, `AluBlock_96_0.2ml` | LWO:0000135 / LWO:0000136 |
-| `nest` reservoirs: `Reservoir_1L`, `Reservoir_500ml` | LWO:0000117 reservoir |
-| trash bins (e.g. `nest.Trash_Bin`) | LWO:0000119 waste container |
+| `opentrons` tips: `opentrons_96_tiprack_1000ul`, `_300ul`, `_10ul`, `_20ul`, `eppendorf_96_tiprack_1000ul_eptips`, `opentrons_96_filtertiprack_*` | LWO:0000145 96-position tip rack (filter variants → LWO:0000142 tip) |
+| `nest` trough plates: `nest_1_troughplate_195000uL_Vb`, `nest_1_troughplate_185000uL_Vb`, `nest_8_troughplate_22000uL_Vb`, `nest_12_troughplate_15000uL_Vb` | LWO:0000118 trough (reservoir plate) |
+| `nest` deep well: `NEST_96_wellplate_2200uL_Ub` | LWO:0000130 deep-well plate |
+| `opentrons` NEST tube racks: `opentrons_24_tuberack_nest_1_5ml_*`, `opentrons_15_tuberack_nest_15ml_conical`, `opentrons_6_tuberack_nest_50ml_conical`, `opentrons_10_tuberack_nest_4x50ml_6x15ml_conical` | LWO:0000151 tube rack |
+| `opentrons` NEST alu blocks: `opentrons_24_aluminumblock_nest_*ml_*`, `opentrons_96_aluminumblock_nest_wellplate_100ul` | LWO:0000135 / LWO:0000136 aluminum block |
+| `tecan` waste: `Trash_Container`, `Trash_Waste` | LWO:0000119 waste container |
 | `opentrons` deck labware: `TPC`-style plate adapters | LWO:0000193 deck adapter |
 
-## Gap table (as of 2026-08-15)
+## Gap table (as of 2026-08-16)
 
 Items in OT/PLR that need an LWO class before they can be annotated:
 
@@ -83,16 +83,16 @@ Items in OT/PLR that need an LWO class before they can be annotated:
 |---|---|
 | OT `universal-lid` (multi-format) | exists: LWO:0000165 universal lid — verify fit |
 | OT `8x15mL-conical-tube` (24/48 variants) | tube rack covered; check strip form |
-| PLR `nest.PCR_Plate_96` (0.1 mL) | LWO:0000127 PCR plate — confirm |
+| PLR `nest.PCR_Plate_96` (0.1 mL) | does not exist in PLR (verified 2026-08-16); Tecan's `PCR_Plate_96_Well` → LWO:0000127 PCR plate |
 | PLR `opentrons.96_Well_PCR_Plate_2mL` | LWO:0000127 |
-| PLR `nest.Dish_35`, `nest.Dish_60`, `nest.Dish_100` | LWO:0000191 petri dish / LWO:0000192 TC dish |
-| PLR `nest.Vial_50mL` | LWO:0000108 vial (add 50 mL range to def?) |
+| PLR `nest.Dish_35`, `nest.Dish_60`, `nest.Dish_100` | do not exist in PLR (verified 2026-08-16); NEST dishes map to LWO:0000191 petri dish / LWO:0000192 TC dish |
+| PLR `nest.Vial_50mL` | does not exist in PLR (verified 2026-08-16); a 50 mL vial would map to LWO:0000108 vial (def range 1–20 mL would need widening if used) |
 | PLR `opentrons.Plate_Lid` / `Plate_Seal` | LWO:0000161 / LWO:0000162 |
-| PLR `nest.Strip_Tubes_0.2ml` | LWO:0000106 PCR strip |
-| PLR `opentrons.Tiprack_96_20` (20 uL) | LWO:0000145 — note: LWO def says 10–5000 uL; OK |
-| PLR `nest.PCR_Tip_Rack` (strip form, 8-tip strips in rack) | NEW: strip tip rack? — candidate for Phase 5 |
+| PLR `nest.Strip_Tubes_0.2ml` | does not exist in PLR (verified 2026-08-16); a 0.2 mL strip would map to LWO:0000106 PCR strip |
+| PLR `opentrons.Tiprack_96_20` (20 uL) | actual name `opentrons_96_tiprack_20ul` → LWO:0000145 — note: LWO def says 10–5000 uL; OK |
+| PLR `nest.PCR_Tip_Rack` (strip form, 8-tip strips in rack) | does not exist in PLR (verified 2026-08-16; never did, per git pickaxe) — no strip tip rack class added |
 | OT `aluminum-block-96-0.2ml` vs `96-position` | LWO:0000136 — OK |
-| PLR `opentrons.Trash_Bin_1L` | LWO:0000119 |
+| PLR `opentrons.Trash_Bin_1L` | does not exist in PLR; Tecan `Trash_Container` / `Trash_Waste` → LWO:0000119 |
 
 The gap table is the input to the Phase 5 researcher queue.
 
@@ -215,21 +215,55 @@ Notes:
   inside the LWO:0000128 def range (100–500 µL); the 0.1 mL PCR
   format sits inside LWO:0000127's 50–200 µL range.
 
+### NEST (cell-nest / NEST Scientific) — SBS trough plates + deep-well
+
+Inventory verified against PLR `main` @ `be6becfb8` and NEST's own
+Reservoir datasheet (cell-nest.oss-cn-zhangjiakou.aliyuncs.com, the
+URL cited in the PLR constructor docstrings). **Important correction:**
+the `resources/nest/` PLR module contains only these five constructors
+(4 trough plates + 1 deep-well plate) — the earlier crosswalk rows
+referencing `nest.Tip_Rack_*`, `nest.Tubes_*`, `nest.AluBlock_*`,
+`nest.Reservoir_*`, `nest.Trash_Bin` never existed in PLR (verified by
+`git log --all -S` pickaxe over the module's full history). NEST
+*branded* tube racks and aluminum blocks are modeled under
+`resources/opentrons/tube_racks.py` (`opentrons_24_tuberack_nest_*`,
+`opentrons_24_aluminumblock_nest_*`). NEST's own tip line (吸头系列,
+96-position SBS racks, 10–1000 µL) is sold by NEST Scientific but has
+no PLR constructor; when catalogued it maps to LWO:0000145 as with any
+SBS 96 tip rack.
+
+| NEST product (cat. no.) | Verified description | LWO class |
+|---|---|---|
+| 360101 | Reservoir, multi-well, 8-channel trough, high profile, 22 mL, no cap, non-sterile, PP, ANSI/SBS, −80 °C / DMSO compatible | LWO:0000118 trough |
+| 360102 | Reservoir, multi-well, 12-channel trough, high profile, 14 mL, no cap, non-sterile, PP, ANSI/SBS | LWO:0000118 trough |
+| 360103 | Reservoir, single well, 96-channel trough, high profile, 195 mL, no cap, non-sterile (one shared container fed through 96 holes) | LWO:0000117 reservoir |
+| 360104 | Reservoir, single well, 384-channel trough, high profile, 185 mL, no cap, non-sterile (one shared container fed through 384 holes) | LWO:0000117 reservoir |
+| 503062 | 96-well deep-well plate, 2.2 mL/well, U-bottom | LWO:0000130 deep-well plate |
+| NEST 24/15/6/10-position tube racks (0.5/1.5/2 mL snap- or screw-cap, 15/50 mL conical) | PLR: `opentrons_24_tuberack_nest_*`, `opentrons_15_tuberack_nest_15ml_conical`, `opentrons_6_tuberack_nest_50ml_conical`, `opentrons_10_tuberack_nest_4x50ml_6x15ml_conical` | LWO:0000151 tube rack |
+| NEST 24-position aluminum blocks (0.5/1.5/2 mL) + 96-position 100 µL block | PLR: `opentrons_24_aluminumblock_nest_*`, `opentrons_96_aluminumblock_nest_wellplate_100ul` | LWO:0000135 / LWO:0000136 |
+
+Notes:
+- The single-well 185/195 mL trough plates are one continuous
+  container under a 96- or 384-hole SBS lid pattern — LWO:0000117
+  (reservoir) covers them; the 8/12-channel split troughs are
+  LWO:0000118 (trough). No new LWO class is needed for any of the
+  NEST line.
+- OBI has no trough/reservoir container term, so no OBI xref applies.
+
 ## Annotation format (computable-lab side)
 
 ```yaml
 # product-catalog record (computable-lab)
-recordId: prod_nest_tiprack_300
-name: Nest 96-Position Tip Rack, 300 uL
-ontology_class: LWO:0000145
+recordId: prod_nest_trough_360101
+name: NEST 8-Channel Trough Reservoir Plate, 22 mL
+ontology_class: LWO:0000118
 properties:
-  nominal_volume: {value: 300, unit: UO:0000101}
-  material: polystyrene
-  sterility: sterile
+  nominal_volume: {value: 22000, unit: UO:0000101}
+  material: polypropylene
+  sterility: non-sterile
 references:
-  opentrons_id: shared-data/labware/definitions/2/nest/96-Well-Tip-Rack-300uL.json
-  pylabrobot: nest.Tip_Rack_300
-footprint: {width_mm: 128.0, depth_mm: 85.5, height_mm: 49.0}
+  pylabrobot: nest.nest_8_troughplate_22000uL_Vb
+footprint: {width_mm: 127.76, depth_mm: 85.48, height_mm: 31.4}
 ```
 
 The `footprint` block is geometry — it belongs to the product record,

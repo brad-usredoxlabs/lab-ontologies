@@ -1,6 +1,6 @@
 format-version: 1.2
 ontology: lwo
-data-version: 2026-08-15
+data-version: 2026-08-16
 id: https://brad-usredoxlabs.github.io/lab-ontologies/lwo
 description: "Labware Ontology (LWO). An ontology of laboratory labware — the physical containers and consumables used to hold, move, and process samples and reagents: vessels (tubes, vials, bottles, flasks, reservoirs), microplates and aluminum blocks, pipette tips and tip racks, racks, lids and seals, filters, columns, and culture ware. Labware is the passive counterpart of laboratory equipment (LEQ). LWO is grounded in BFO material entity and cross-mapped to OBI where OBI provides a matching concept."
 import: ../imports/bfo.obo
@@ -209,14 +209,14 @@ synonym: "boiling flask" RELATED []
 [Term]
 id: LWO:0000117
 name: reservoir
-def: "A labware item with a large open top and a volume of tens to hundreds of milliliters, used to hold a bulk volume of reagent or sample from which smaller volumes are dispensed; distinct from a bottle in being designed for active workflow use." [LWO:0000117]
+def: "A labware item with a large open top and a volume of tens to hundreds of milliliters, used to hold a bulk volume of reagent or sample from which smaller volumes are dispensed; distinct from a bottle in being designed for active workflow use. The classic deck forms are the 1-liter trough and the SBS-format trough plate (e.g. NEST 360101-360104: 8- or 12-channel troughs of 14-22 milliliters, or a single well of 185-195 milliliters with 96/384 feed holes), made of polypropylene, non-sterile, -80 degree Celsius and DMSO compatible." [LWO:0000117]
 is_a: LWO:0000100 ! labware
 synonym: "reagent reservoir" EXACT []
 
 [Term]
 id: LWO:0000118
 name: trough
-def: "A long, narrow reservoir with a rectangular cross section, used to hold a bulk volume of liquid or to collect waste; the classic form is the 1-liter trough on a liquid-handling deck." [LWO:0000118]
+def: "A long, narrow reservoir with a rectangular cross section, used to hold a bulk volume of liquid or to collect waste; the classic forms are the 1-liter trough on a liquid-handling deck and the SBS trough plate with a row of 8 or 12 channels of 14-22 milliliters each (e.g. NEST 360101, 360102), whose single shared or split container is fed through a grid of holes." [LWO:0000118]
 is_a: LWO:0000117 ! reservoir
 
 [Term]
@@ -305,7 +305,7 @@ is_a: LWO:0000120 ! microplate
 [Term]
 id: LWO:0000130
 name: deep-well plate
-def: "A 96-well plate with a nominal well volume of 1 to 2.4 milliliters and a deep, narrow well, used for sample storage, reagent preparation, and headspace analysis." [LWO:0000130]
+def: "A 96-well plate with a nominal well volume of 1 to 2.4 milliliters and a deep, narrow well, used for sample storage, reagent preparation, and headspace analysis; wells are U-bottom or flat-bottom (e.g. NEST 503062, 2.2 milliliter U-bottom)." [LWO:0000130]
 is_a: LWO:0000126 ! 96-well plate
 synonym: "deep well plate" EXACT []
 
