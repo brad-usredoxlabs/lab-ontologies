@@ -7,6 +7,8 @@ tests/class_hierarchy.yaml is the canonical tree. This test asserts:
      (the two cannot drift apart)
   3. the tree is acyclic (follow is_a to the root, no loops)
   4. no orphan depth: every class reaches the root in <= 8 steps
+  5. only designated branch classes may hang directly under the root
+     (a new top-level branch is an explicit, reviewed decision)
 """
 import re
 from pathlib import Path
@@ -18,6 +20,32 @@ REPO = Path(__file__).resolve().parent.parent
 HIER = REPO / "tests/class_hierarchy.yaml"
 LWO = REPO / "src/lwo" / "lwo.base.obo"
 LEQ = REPO / "src/leq" / "leq.base.obo"
+
+# The only classes allowed as direct children of each root. Everything else
+# must hang under one of these (or under a further subclass).
+LWO_ROOT_BRANCHES = {
+    "LWO:0000101",  # vessel
+    "LWO:0000117",  # reservoir
+    "LWO:0000120",  # microplate
+    "LWO:0000134",  # aluminum block
+    "LWO:0000140",  # liquid-handling consumable
+    "LWO:0000150",  # rack
+    "LWO:0000160",  # lid or seal
+    "LWO:0000170",  # filter
+    "LWO:0000180",  # column
+    "LWO:0000190",  # culture ware
+    "LWO:0000200",  # deck support labware
+}
+LEQ_ROOT_BRANCHES = {
+    "LEQ:0000101",  # liquid-handling equipment
+    "LEQ:0000200",  # thermal equipment
+    "LEQ:0000201",  # separation equipment
+    "LEQ:0000202",  # measurement equipment
+    "LEQ:0000203",  # preparation equipment
+    "LEQ:0000204",  # storage and containment equipment
+    "LEQ:0000205",  # imaging equipment
+    "LEQ:0000206",  # support equipment
+}
 
 
 def parse(path: Path, prefix: str):
@@ -82,6 +110,29 @@ def test_hierarchy_matches_obo(path, prefix, hkey, root):
             f"is_a {parent}. Update tests/class_hierarchy.yaml (or "
             f"tools/build_hierarchy.py) to match."
         )
+
+
+@pytest.mark.parametrize("path,prefix,root,allowed", [
+    (LWO, "LWO", "LWO:0000100", LWO_ROOT_BRANCHES),
+    (LEQ, "LEQ", "LEQ:0000100", LEQ_ROOT_BRANCHES),
+])
+def test_only_branches_hang_under_root(path, prefix, root, allowed):
+    """Rule 5: a class may sit directly under the root ONLY if it is a
+    designated branch. This is what stops the tree from flattening back
+    out — a new top-level branch is an explicit, reviewed decision."""
+    classes = parse(path, prefix)
+    direct = [cid for cid, parent in classes.items() if parent == root]
+    offenders = [cid for cid in direct if cid not in allowed]
+    assert not offenders, (
+        f"classes hang directly under root {root} but are not designated "
+        f"branches — attach them to an existing branch (or add them to "
+        f"{prefix}_ROOT_BRANCHES in this test as a deliberate new branch): "
+        f"{offenders}"
+    )
+    # And every designated branch must actually exist and hang under root.
+    for b in allowed:
+        assert b in classes, f"designated branch {b} is not in {prefix}"
+        assert classes[b] == root, f"designated branch {b} is not under root"
 
 
 @pytest.mark.parametrize("path,prefix,root", [
