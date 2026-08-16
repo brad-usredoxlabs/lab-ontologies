@@ -138,6 +138,44 @@ Notes:
 - OBI has no "pipette tip" class (only OBI:0002488 pipette, the
   device), so LWO tip classes carry no OBI xref.
 
+### Agilent — Bravo / AssayMAP Bravo liquid handler + tips
+
+The Bravo (G5563AA; AssayMAP Bravo for high-throughput screening) is
+the reference 96/384-channel deck robot: a 9-position ANSI/SLAS deck
+that accepts 96-, 384-, and 1536-well plate formats. Developed by
+Velocity11, acquired by Agilent in 2007. The instrument itself
+annotates as **LEQ:0000105 liquid handler** (OBI:0400112); "Bravo" is
+a product line, not an ontology class.
+
+Heads (swappable; LEQ:0000105 def now lists 1/8/96/384 channels):
+96-channel "LT" large-transfer (2–250 µL, G5055A), 96-channel "ST"
+small-transfer (0.3–70 µL, G5057A), 384-channel "ST" (0.3–70 µL,
+G5056A). AssayMAP heads (e.g. 96AM) cover chromatography.
+
+Tips — sold in SBS 96- and 384-position racks only; the rack format
+selects the LWO class:
+
+| Agilent Bravo product (part no.) | Format | LWO class |
+|---|---|---|
+| Disposable tips, 10/20/30/100/250 µL, 96 in rack (250 µL: 19477-002; sterile 19477-012) | 96-position, 8 x 12, SBS 96 | LWO:0000145 96-position tip rack |
+| Disposable tips, wide-bore 250 µL, 96 in rack (19477-032 / 19477-072) | 96-position, SBS 96 | LWO:0000145 96-position tip rack |
+| Disposable tips, sterile filtered 250 µL, 96 in rack (19477-022 / 19477-082) | 96-position, SBS 96 | LWO:0000142 filtered pipette tip (tip), rack LWO:0000145 |
+| Disposable tips, 10/30/70 µL, 384 in rack (30 µL: 11484-202; 70 µL: 19133-102), incl. conductive and sterile variants (10734-302, 11484-302, 19133-212) | 384-position, 16 x 24, SBS 384 | LWO:0000137 384-position tip rack |
+
+Optional on-deck modules (LEQ classes already exist): orbital shaking
+station (G5431B) → LEQ:0000120 plate shaker; vacuum filtration
+station w/ pump (G5432B) → LEQ:0000126 vacuum manifold; on-deck
+thermal cycler (ODTC) → LEQ:0000106 thermal cycler.
+
+Notes:
+- Bravo tip racks are the canonical SBS 96 / SBS 384 rack instances —
+  LWO:0000145 and LWO:0000137 as defined are exactly the Bravo form
+  (no new class needed).
+- PyLabRobot's `agilent` resource directory holds only labware
+  (96-well 150 µL plate 5042-8502, 2-reservoir 144 mL 203852-100 →
+  LWO:0000126 / LWO:0000117), no Bravo robot definition; the Bravo is
+  an OpenTrons-native instrument.
+
 ## Annotation format (computable-lab side)
 
 ```yaml

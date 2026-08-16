@@ -130,7 +130,7 @@ xref: OBI:0001118 ! multichannel pipette
 [Term]
 id: LEQ:0000105
 name: liquid handler
-def: "An automated robotic device that dispenses, aspirates, or transfers liquids in controlled volumes across multiple positions without manual operation per transfer; typically holds one or more pipette heads with 1, 8, or 96 channels and moves labware or heads on a deck." [LEQ:0000105]
+def: "An automated robotic device that dispenses, aspirates, or transfers liquids in controlled volumes across multiple positions without manual operation per transfer; typically holds one or more pipette heads with 1, 8, 96, or 384 channels (96- and 384-channel heads being the standard high-throughput forms) and moves labware or heads on a deck." [LEQ:0000105]
 is_a: LEQ:0000101 ! liquid-handling equipment
 synonym: "liquid handling robot" EXACT []
 synonym: "automated liquid handler" EXACT []

@@ -354,7 +354,7 @@ is_a: LWO:0000134 ! aluminum block
 [Term]
 id: LWO:0000137
 name: 384-position tip rack
-def: "A tip rack holding 384 tips in a 16 x 24 grid at a 4.5 millimeter pitch (the SBS 384 footprint), the standard format for low-volume tips on high-channel-count automation heads; the classic forms are the 12.5 and 125 microliter racks." [LWO:0000137]
+def: "A tip rack holding 384 tips in a 16 x 24 grid at a 4.5 millimeter pitch (the SBS 384 footprint), the standard format for low-volume tips on high-channel-count automation heads; the classic forms are the 12.5, 125, 10, 30, and 70 microliter racks." [LWO:0000137]
 is_a: LWO:0000144 ! tip rack
 synonym: "384 tip rack" EXACT []
 

@@ -42,7 +42,13 @@ aspects:
   - id: agilent-bravo-labware
     title: Agilent Bravo liquid handler models + compatible tip families
     ontology: both
-    status: pending
+    status: done
+    note: >
+      No new classes needed: Bravo annotates as LEQ:0000105 (refined
+      def: heads with 1/8/96/384 channels), tip racks map to
+      LWO:0000145 (SBS 96) / LWO:0000137 (SBS 384, def extended with
+      10/30/70 uL classic forms); new Agilent Bravo crosswalk section
+      (G5563AA, G5055A/G5056A/G5057A heads, tip part numbers).
     detail: >
       Research the Agilent Bravo (and Bravo II) liquid handler: models,
       single/8/96-channel head options, and the tip families it
