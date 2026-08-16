@@ -122,7 +122,19 @@ aspects:
   - id: vortex-sonicator-shaker-brands
     title: Vortex / sonicator / shaker brands + model classes
     ontology: leq
-    status: pending
+    status: done
+    note: >
+      Added LEQ:0000207 (probe sonicator, is_a LEQ:0000123; classic
+      form Qsonica Q700 700 W) — genuinely new, OBI:0400114's def is
+      probe-only. Refined LEQ:0000122 vortexer (100-3200 rpm;
+      microtube/4-plate/large-tube 50 mL forms; +EXACT "vortex
+      shaker"), LEQ:0000123 sonicator (probe vs bath clarified;
+      bath = LEQ:0000195-adjacent), LEQ:0000197 orbital (25-500 rpm),
+      LEQ:0000198 reciprocating (+wrist-action classic form, EXACT
+      "wrist action shaker"), LEQ:0000116 incubator shaker (+RELATED
+      "thermal shaker"). No new brand classes; brand rows in
+      docs/crosswalk.md. OBI gap rows for these families already
+      resolved (LEQ:0000122/123/116) so obi-gap-analysis.md unchanged.
     detail: >
       Research benchtop vortex (e.g. VWR, Labnet, Thermo), sonicator
       (e.g. Qsonica, Bio-Ruptor, Diasonix), and shaker (e.g. Eppendorf,

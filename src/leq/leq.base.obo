@@ -1,6 +1,6 @@
 format-version: 1.2
 ontology: leq
-data-version: 2026-08-15
+data-version: 2026-08-16
 id: https://brad-usredoxlabs.github.io/lab-ontologies/leq
 description: "Lab Equipment Ontology (LEQ). An ontology of laboratory equipment — the powered and mechanical devices used to act upon samples, reagents, and labware: liquid-handling devices (pipettes, liquid handlers), thermal equipment (cyclers, incubators, dryers, baths), separation equipment (centrifuges, chromatography, electrophoresis, purification), reading and measurement devices (plate readers, spectrometers, balances, pH meters, counters, sequencers, mass spectrometers, NMR, microscopes), preparation devices (vortexes, sonicators, shakers, homogenizers, plate washers), storage and containment equipment (freezers, autoclaves, biosafety cabinets, fume hoods), imaging equipment, and support infrastructure (vacuum, gas, power). LEQ is grounded in the OBI device concept (COB:0001300) and cross-maps to OBI instrument terms where they exist. The counterpart concept for passive containers/consumables is labware (LWO:0000100)."
 import: ../imports/bfo.obo
@@ -216,8 +216,9 @@ xref: OBI:0001075 ! hybridization oven
 [Term]
 id: LEQ:0000116
 name: incubator shaker
-def: "An incubator with an integrated orbital or reciprocal shaker, used to grow cultures in liquid media under controlled temperature and agitation." [LEQ:0000116]
+def: "An incubator with an integrated orbital or reciprocal shaker, used to grow cultures in liquid media under controlled temperature and agitation; also called a thermal shaker." [LEQ:0000116]
 is_a: LEQ:0000110 ! incubator
+synonym: "thermal shaker" RELATED []
 xref: OBI:0001076 ! incubator shaker
 
 [Term]
@@ -260,18 +261,27 @@ xref: OBI:0001103 ! rocker
 [Term]
 id: LEQ:0000122
 name: vortexer
-def: "A benchtop device that rapidly oscillates a small container to mix its contents by turbulent flow; the classic form is the microcentrifuge tube vortexer." [LEQ:0000122]
+def: "A benchtop device in which an off-center rotating rubber cup oscillates rapidly to create a vortex, mixing a small container by turbulent flow; speeds typically span 100 to 3200 rpm, and the classic forms are the microtube vortexer, the four-position plate vortexer, and the large-tube vortexer for 50 milliliter tubes." [LEQ:0000122]
 is_a: LEQ:0000203 ! preparation equipment
 synonym: "vortex mixer" EXACT []
+synonym: "vortex shaker" EXACT []
 xref: OBI:0400118 ! vortexer
 
 [Term]
 id: LEQ:0000123
 name: sonicator
-def: "A device that uses ultrasound to mix, lyse, or emulsify a sample by cavitation; the classic forms are the probe sonicator (for tubes) and the bath sonicator (for plates and multi-tube lysis)." [LEQ:0000123]
+def: "A device that uses ultrasound (above 20 kilohertz) to mix, lyse, or emulsify a sample by acoustic cavitation; the classic forms are the probe sonicator (a vibrating metallic probe inserted into the sample, for tubes and flasks) and the bath sonicator (a liquid tank through which sound reaches sealed vessels, for plates and multi-tube lysis). An ultrasonic cleaner (LEQ:0000195) uses the same physics for decontamination rather than sample processing." [LEQ:0000123]
 is_a: LEQ:0000203 ! preparation equipment
 synonym: "ultrasonic homogenizer" RELATED []
 xref: OBI:0400114 ! sonicator
+
+[Term]
+id: LEQ:0000207
+name: probe sonicator
+def: "A sonicator in which an ultrasonic transducer drives a metallic probe (horn) that is immersed directly in the sample, concentrating cavitation at the probe tip for cell lysis, DNA shearing, emulsification, and mixing; benchtop models typically span 50 to 700 watts, with industrial processors above; the classic form is the Qsonica Q700 (700 watts, programmable)." [LEQ:0000207]
+is_a: LEQ:0000123 ! sonicator
+synonym: "probe ultrasonic processor" RELATED []
+synonym: "ultrasonic processor" RELATED []
 
 [Term]
 id: LEQ:0000124
@@ -809,16 +819,17 @@ synonym: "shaker" EXACT []
 [Term]
 id: LEQ:0000197
 name: orbital shaker
-def: "A lab shaker that agitates labware on a circular (orbital) axis, used to mix cell culture flasks and microplates." [LEQ:0000197]
+def: "A lab shaker that agitates labware on a circular (orbital) axis, typically at 25 to 500 rpm with low heat and vibration, used to mix cell culture flasks and microplates and to wash blots; the low heat load makes it the preferred form for microbial culture." [LEQ:0000197]
 is_a: LEQ:0000196 ! lab shaker
 synonym: "orbital shaker" EXACT []
 
 [Term]
 id: LEQ:0000198
 name: reciprocating shaker
-def: "A lab shaker that agitates labware on a back-and-forth (reciprocating) axis, used to mix cell culture flasks and microplates." [LEQ:0000198]
+def: "A lab shaker that agitates labware on a back-and-forth (reciprocating) axis, used to mix cell culture flasks and microplates; the classic form is the wrist-action shaker (e.g. the Eppendorf Innova line), whose platform swivels in a wrist-like reciprocating motion and is the standard for large-flask culture at settable amplitudes." [LEQ:0000198]
 is_a: LEQ:0000196 ! lab shaker
 synonym: "reciprocating shaker" EXACT []
+synonym: "wrist action shaker" EXACT []
 
 [Term]
 id: LEQ:0000199

@@ -323,6 +323,68 @@ Notes:
 - No OBI xrefs: OBI's import has no tip-rack / tip-carrier / trough
   container term (only OBI:0002488 pipette), so none apply.
 
+## Benchtop agitation equipment — vortex / sonicator / shaker (brand → LEQ class)
+
+Brands and model lines are catalog data, not ontology classes. The
+motion type (not the brand) selects the LEQ class.
+
+### Vortexers → LEQ:0000122 (benchtop; def: 100–3200 rpm,
+microtube / 4-plate / large-tube 50 mL forms)
+
+| Vortexer product line | Verified description | LEQ class |
+|---|---|---|
+| Scientific Industries Vortex-Genie 2 | 4-plate benchtop vortexer, 100–3200 rpm, trigger or continuous (Wikipedia "Vortex mixer", in-operation photo) | LEQ:0000122 vortexer |
+| Scientific Industries Vortex-Genie 3 | large-tube 50 mL benchtop vortexer (family line, spec sheet not fetched — page blocked) | LEQ:0000122 vortexer |
+| Labnet Orbit 300 | multipurpose digital vortexer (vendor nav, labnetinternational.com) | LEQ:0000122 vortexer |
+| Labnet Orbit P4 | digital microtube **and microplate** shaker/vortexer (vendor nav) | LEQ:0000122 vortexer |
+| Thermo Fisher PolyPrep 300 / 500 / 600 | benchtop vortexer line, microtube to 50 mL (family name only — thermofisher.com product pages 404 on fetch) | LEQ:0000122 vortexer |
+
+### Probe sonicators (ultrasonic processors) → LEQ:0000207 (NEW)
+is_a LEQ:0000123 sonicator
+
+| Sonicator product line | Verified description | LEQ class |
+|---|---|---|
+| Qsonica Q55 | compact, cost-effective probe sonicator (qsonica.com Q700 page) | LEQ:0000207 probe sonicator |
+| Qsonica Q125 | programmable, user-friendly probe sonicator | LEQ:0000207 probe sonicator |
+| Qsonica Q500 | powerful, programmable probe sonicator | LEQ:0000207 probe sonicator |
+| Qsonica Q700 | 700 W, touch-screen control, programmable (canonical benchtop probe sonicator) | LEQ:0000207 probe sonicator |
+| Qsonica Q800R | high-throughput DNA & chromatin shearing sonicator | LEQ:0000207 probe sonicator |
+| Qsonica Q2000 / Q2500 | high-power / highest-power industrial probe processors | LEQ:0000207 probe sonicator |
+| Qsonica ultrasonic cleaner line | benchtop cleaning tanks (separate product line, same cavitation physics) | LEQ:0000195 ultrasonic cleaner |
+
+Bath sonicators (no brand row verified this run; Wikipedia
+"Sonication": the other classic lab form, for plates/multi-tube) map
+to LEQ:0000123 sonicator with a bath-form data value — no bath
+class exists and none is warranted until a specific product line is
+catalogued.
+
+### Shakers → LEQ:0000196 lab shaker (motion type selects subclass)
+
+| Shaker product line | Motion | LEQ class |
+|---|---|---|
+| Eppendorf Innova 200 / 2200 (wrist-action; family name only — product pages 404 on fetch) | wrist-action reciprocating, settable amplitude, large flasks | LEQ:0000198 reciprocating shaker (def now names the wrist-action form) |
+| Eppendorf thermal shakers TT1 / TT5 / TT15 (family name only — product pages 404 on fetch) | orbital in a heated chamber | LEQ:0000116 incubator shaker |
+| New Brunswick Innova wrist-action shakers (family name only) | wrist-action reciprocating | LEQ:0000198 reciprocating shaker |
+| Labnet orbital shakers / 3D shakers / reciprocal shakers (vendor nav) | orbital / 3D (compound) / reciprocating | LEQ:0000197 orbital / LEQ:0000196 (3D = no dedicated class yet) / LEQ:0000198 reciprocating |
+
+Notes:
+- The wrist-action shaker is the classic reciprocating form — folded
+  into LEQ:0000198's def + EXACT "wrist action shaker" synonym rather
+  than a new class (it is a motion variant, not a new device kind).
+- 3D (compound orbital + reciprocating) shakers have no LEQ class;
+  the gap is noted here, not in the ontology, until a product line
+  is catalogued.
+- OBI has plate shaker (OBI:0001094), rocker (OBI:0001103), and
+  incubator shaker (OBI:0001076) only — no generic shaker, orbital,
+  reciprocating, or wrist-action term — so LEQ:0000196/197/198/199
+  and LEQ:0000122/123/207 are the wet-lab gap LEQ fills (see
+  docs/obi-gap-analysis.md).
+- Research note: web_search was unavailable this run (missing Exa
+  API key); vendor pages fetched directly with curl. Thermofisher,
+  Eppendorf, VWR, and Scientific Industries product pages were
+  blocked/404 — rows marked "family name only" are catalog-level
+  anchors to verify against the vendor catalog before publication.
+
 ## Annotation format (computable-lab side)
 
 ```yaml
