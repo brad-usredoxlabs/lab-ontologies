@@ -1,0 +1,220 @@
+# computable-lab role bindings for LWO/LEQ
+#
+# This file is the bridge between the two lab ontologies and
+# computable-lab's protocol/record system. It is consumed by
+# computable-lab's role-binding and UI hint layers; no computable-lab
+# code changes are required to use it (it is a data file).
+#
+# Three binding surfaces, matching computable-lab's schemas:
+#   1. labwareType  -> LWO class   (Labware.labwareType enum, schema/lab/labware.schema.yaml)
+#   2. instrumentRoles -> LEQ class (Protocol.roles.instrumentRoles, schema/workflow/protocol.schema.yaml)
+#   3. contextRoles  -> LWO/LEQ   (Protocol.roles.contextRoles, schema/knowledge/context-role.schema.yaml)
+
+version: 1
+ontologies:
+  lwo:
+    prefix: LWO
+    id_base: https://brad-usredoxlabs.github.io/lab-ontologies/lwo
+  leq:
+    prefix: LEQ
+    id_base: https://brad-usredoxlabs.github.io/lab-ontologies/leq
+
+# ---------------------------------------------------------------------------
+# 1. Labware design binding: computable-lab `Labware.labwareType` (flat enum)
+#    -> LWO class. When a Labware record is created, its labwareType selects
+#    the LWO annotation class; more specific subtypes can be set via tags.
+# ---------------------------------------------------------------------------
+labware_type_to_lwo:
+  plate:
+    lwo: LWO:0000121          # well plate (generic)
+    note: >
+      Default for `plate`. Subtypes chosen by tags:
+      pcr -> LWO:0000127, deep-well -> LWO:0000130, filter -> LWO:0000129,
+      tc-treated -> LWO:0000131, 96 -> LWO:0000126, 384 -> LWO:0000132.
+  reservoir:
+    lwo: LWO:0000117          # reservoir
+    note: Troughs -> LWO:0000118; waste -> LWO:0000119.
+  tube_rack:
+    lwo: LWO:0000151          # tube rack
+  tiprack:
+    lwo: LWO:0000145          # 96-position tip rack
+  tube:
+    lwo: LWO:0000102          # tube (generic)
+    note: >
+      Subtypes by volume/tag: 0.2ml -> LWO:0000105 PCR tube,
+      1.5/2ml -> LWO:0000103 microcentrifuge tube,
+      15/50ml -> LWO:0000104 conical centrifuge tube.
+  dish:
+    lwo: LWO:0000191          # petri dish / cell culture dish
+    note: TC-treated dish -> LWO:0000192.
+  slide:
+    lwo: null                 # no LWO class yet; candidate for aspect queue
+    note: Microscope slide — add LWO class via researcher cron.
+  other:
+    lwo: LWO:0000100          # labware (root fallback)
+  # tubeset_* composite formats (multi-type racks) map to the rack class
+  tubeset_6x15ml:
+    lwo: LWO:0000151
+  tubeset_4x50ml:
+    lwo: LWO:0000151
+  tubeset_50x1p5ml:
+    lwo: LWO:0000151
+  tubeset_96x0p2ml:
+    lwo: LWO:0000151
+  tubeset_mixed_4x50ml_6x15ml:
+    lwo: LWO:0000151
+  tubeset_4way_4x50ml:
+    lwo: LWO:0000151
+  tubeset_4way_12x15ml:
+    lwo: LWO:0000151
+  tubeset_4way_32x2ml:
+    lwo: LWO:0000151
+  tubeset_4way_32x0p5ml:
+    lwo: LWO:0000151
+  tubeset_80x2ml:
+    lwo: LWO:0000151
+
+# ---------------------------------------------------------------------------
+# 2. Instrument binding: computable-lab `Protocol.roles.instrumentRoles`
+#    roleId -> LEQ class. A protocol declares an instrument role; the run
+#    binds a concrete instrument whose LEQ annotation is a subclass of the
+#    role's expected class.
+# ---------------------------------------------------------------------------
+instrument_role_to_leq:
+  liquid_handler:
+    leq: LEQ:0000105          # liquid handler (robot)
+  pipette:
+    leq: LEQ:0000102          # pipette (manual)
+  multichannel_pipette:
+    leq: LEQ:0000104
+  thermal_cycler:
+    leq: LEQ:0000106
+  centrifuge:
+    leq: LEQ:0000107
+  microcentrifuge:
+    leq: LEQ:0000108
+  plate_reader:
+    leq: LEQ:0000109
+  incubator:
+    leq: LEQ:0000110
+  co2_incubator:
+    leq: LEQ:0000110
+  plate_shaker:
+    leq: LEQ:0000120
+  vortexer:
+    leq: LEQ:0000122
+  sonicator:
+    leq: LEQ:0000123
+  plate_washer:
+    leq: LEQ:0000125
+  vacuum_manifold:
+    leq: LEQ:0000126
+  lyophilizer:
+    leq: LEQ:0000127
+  spectrophotometer:
+    leq: LEQ:0000129
+  balance:
+    leq: LEQ:0000131
+  ph_meter:
+    leq: LEQ:0000134
+  flow_cytometer:
+    leq: LEQ:0000139
+  cell_sorter:
+    leq: LEQ:0000140
+  mass_spectrometer:
+    leq: LEQ:0000141
+  sequencer:
+    leq: LEQ:0000165
+  dna_sequencer:
+    leq: LEQ:0000166
+  dna_synthesizer:
+    leq: LEQ:0000167
+  nucleic_acid_extractor:
+    leq: LEQ:0000171
+  gel_electrophoresis:
+    leq: LEQ:0000175
+  capillary_electrophoresis:
+    leq: LEQ:0000176
+  hplc:
+    leq: LEQ:0000178
+  gc:
+    leq: LEQ:0000179
+  microscope:
+    leq: LEQ:0000184
+  autoclave:
+    leq: LEQ:0000149
+  freezer:
+    leq: LEQ:0000186
+  water_bath:
+    leq: LEQ:0000117
+  heating_block:
+    leq: LEQ:0000118
+
+# ---------------------------------------------------------------------------
+# 3. Context-role binding: computable-lab `context-role` records (and
+#    Protocol.roles.contextRoles) -> LWO/LEQ classes. A context role is a
+#    semantic slot (e.g. "assay-plate", "positive-control"); its
+#    applicable labware/equipment is constrained by the LWO/LEQ class.
+# ---------------------------------------------------------------------------
+context_role_to_class:
+  assay-plate:
+    lwo: LWO:0000128          # assay plate
+  pcr-plate:
+    lwo: LWO:0000127
+  deep-well-plate:
+    lwo: LWO:0000130
+  filter-plate:
+    lwo: LWO:0000129
+  tc-plate:
+    lwo: LWO:0000131
+  reagent-reservoir:
+    lwo: LWO:0000117
+  tip-rack:
+    lwo: LWO:0000145
+  waste-container:
+    lwo: LWO:0000119
+  microcentrifuge-tube-rack:
+    lwo: LWO:0000151
+  conical-tube-rack:
+    lwo: LWO:0000151
+  plate-lid:
+    lwo: LWO:0000161
+  pcr-seal:
+    lwo: LWO:0000162
+  positive-control:
+    lwo: null                 # role is semantic; labware class set per-run
+    leq: null
+    note: >
+      Positive control is a biological/context concept, not a labware class.
+      LWO/LEQ constrain WHICH plate/tube it lives in, not the control itself.
+  vehicle-control:
+    lwo: null
+    leq: null
+  qpcr-run:
+    leq: LEQ:0000106          # requires a thermal cycler
+  pcr-amplification:
+    leq: LEQ:0000106
+  centrifugation:
+    leq: LEQ:0000107
+  cell-culture:
+    leq: LEQ:0000110          # CO2 incubator
+  nucleic-acid-extraction:
+    leq: LEQ:0000171
+  sequencing:
+    leq: LEQ:0000166
+
+# ---------------------------------------------------------------------------
+# Property mapping: computable-lab Labware.format / data -> LWO data props.
+# These let computable-lab surface LWO-typed properties in the UI.
+# ---------------------------------------------------------------------------
+property_mapping:
+  well_count: LWO:0000003
+  well_depth: LWO:0000009
+  well_pitch: LWO:0000008
+  nominal_volume: LWO:0000001
+  working_volume: LWO:0000002
+  bottom_geometry: LWO:0000004
+  material: LWO:0000005
+  sterility: LWO:0000006
+  surface_treatment: LWO:0000007
+  skirt_type: LWO:0000010

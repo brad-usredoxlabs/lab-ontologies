@@ -1,0 +1,785 @@
+format-version: 1.2
+ontology: leq
+data-version: 2026-08-15
+id: https://brad-usredoxlabs.github.io/lab-ontologies/leq
+description: "Lab Equipment Ontology (LEQ). An ontology of laboratory equipment — the powered and mechanical devices used to act upon samples, reagents, and labware: liquid-handling devices (pipettes, liquid handlers), thermal equipment (cyclers, incubators, dryers, baths), separation equipment (centrifuges, chromatography, electrophoresis, purification), reading and measurement devices (plate readers, spectrometers, balances, pH meters, counters, sequencers, mass spectrometers, NMR, microscopes), preparation devices (vortexes, sonicators, shakers, homogenizers, plate washers), storage and containment equipment (freezers, autoclaves, biosafety cabinets, fume hoods), imaging equipment, and support infrastructure (vacuum, gas, power). LEQ is grounded in the OBI device concept (COB:0001300) and cross-maps to OBI instrument terms where they exist. The counterpart concept for passive containers/consumables is labware (LWO:0000100)."
+import: ../imports/bfo.obo
+import: ../imports/iao.owl
+import: ../imports/obi.obo
+import: ../imports/uo.obo
+import: ../lwo/lwo.base.obo
+property_value: http://purl.org/dc/elements/1.1/contributor "Brad (Computable Lab)" xsd:string
+property_value: http://purl.org/dc/elements/1.1/creator "Brad (Computable Lab)" xsd:string
+property_value: http://purl.org/dc/elements/1.1/license "http://creativecommons.org/licenses/by/4.0/" xsd:string
+property_value: http://purl.obolibrary.org/obo/IAO_0000117 "https://github.com/brad-usredoxlabs/lab-ontologies/issues" xsd:string
+property_value: http://purl.obolibrary.org/obo/IAO_0000116 "brad-usredoxlabs.github.io/lab-ontologies/leq" xsd:string
+property_value: http://purl.org/dc/terms/source "https://brad-usredoxlabs.github.io/lab-ontologies/leq" xsd:string
+# oboInOwl:id = LEQ
+
+[Typedef]
+id: LEQ:0000001
+name: has maximum capacity
+def: "The relationship between a piece of laboratory equipment and the maximum number or volume of items it can process or hold in one cycle (e.g. rotor capacity, deck well positions, tip channels). The unit varies by equipment type and should be stated in the value or a companion property." [LEQ:0000001]
+domain: LEQ:0000100 ! lab equipment
+
+[Typedef]
+id: LEQ:0000002
+name: has temperature range
+def: "The relationship between a piece of temperature-controlled laboratory equipment and the range of settable temperatures it supports (e.g. a -80 degree Celsius freezer, a 4 to 100 degree Celsius thermal cycler block)." [LEQ:0000002]
+domain: LEQ:0000100 ! lab equipment
+
+[Typedef]
+id: LEQ:0000003
+name: has maximum speed
+def: "The relationship between a piece of rotating laboratory equipment (centrifuge, shaker, vortex) and its maximum operating speed, expressed in revolutions per minute." [LEQ:0000003]
+domain: LEQ:0000100 ! lab equipment
+
+[Typedef]
+id: LEQ:0000004
+name: accepts labware
+def: "The relationship between a piece of laboratory equipment and a class of labware it can accept, hold, or process (e.g. a microplate reader accepts 96-well plates; a microcentrifuge accepts 24 x 2 ml microcentrifuge tubes)." [LEQ:0000004]
+domain: LEQ:0000100 ! lab equipment
+range: LWO:0000100 ! labware
+
+[Term]
+id: LEQ:0000100
+name: lab equipment
+def: "A device (COB:0001300) used in a laboratory to act upon, transform, measure, store, or move samples, reagents, or labware; equipment is the active counterpart of labware (LWO:0000100), which is the passive container or consumable." [LEQ:0000100]
+is_a: COB:0001300 ! device
+synonym: "laboratory instrument" RELATED []
+synonym: "lab instrument" RELATED []
+synonym: "scientific instrument" RELATED []
+xref: OBI:0000832 ! measurement device
+
+[Term]
+id: LEQ:0000101
+name: liquid-handling equipment
+def: "Laboratory equipment designed to dispense, aspirate, or transfer liquids in controlled volumes, from manual pipettes to automated multi-channel and 96-channel liquid-handling robots." [LEQ:0000101]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0400112 ! liquid handler
+
+[Term]
+id: LEQ:0000102
+name: pipette
+def: "A device that dispenses a controlled volume of liquid, either by manual operation (single-channel or multi-channel serological/micropipette) or by motorized control; pipettes aspirate and dispense through a disposable tip." [LEQ:0000102]
+is_a: LEQ:0000101 ! liquid-handling equipment
+synonym: "micropipette" RELATED [http://en.wikipedia.org/wiki/Micropipette]
+synonym: "pipettor" RELATED []
+xref: OBI:0002488 ! pipette
+
+[Term]
+id: LEQ:0000103
+name: single-channel pipette
+def: "A pipette that dispenses through a single tip in a single channel, operated manually or by motorized controller; nominal volumes typically span 10 microliters to 10 milliliters." [LEQ:0000103]
+is_a: LEQ:0000102 ! pipette
+synonym: "single channel pipette" EXACT []
+xref: OBI:0001128 ! micropipette
+
+[Term]
+id: LEQ:0000104
+name: multichannel pipette
+def: "A pipette with eight or more channels that dispenses through multiple tips simultaneously, used to move liquids in parallel across microplate rows or tube strips." [LEQ:0000104]
+is_a: LEQ:0000102 ! pipette
+synonym: "8-channel pipette" NARROW []
+synonym: "multichannel micropipette" EXACT []
+xref: OBI:0001118 ! multichannel pipette
+
+[Term]
+id: LEQ:0000105
+name: liquid handler
+def: "An automated robotic device that dispenses, aspirates, or transfers liquids in controlled volumes across multiple positions without manual operation per transfer; typically holds one or more pipette heads with 1, 8, or 96 channels and moves labware or heads on a deck." [LEQ:0000105]
+is_a: LEQ:0000101 ! liquid-handling equipment
+synonym: "liquid handling robot" EXACT []
+synonym: "automated liquid handler" EXACT []
+xref: OBI:0400112 ! liquid handler
+
+[Term]
+id: LEQ:0000106
+name: thermal cycler
+def: "An instrument that repeatedly raises and lowers the temperature of a sample through a programmed series of cycles, used canonically for polymerase chain reaction (PCR) and related enzymatic amplification or denaturation workflows." [LEQ:0000106]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "PCR machine" RELATED []
+synonym: "PCR thermocycler" EXACT []
+synonym: "thermal cycller" RELATED []
+xref: OBI:0400116 ! thermal cycler
+
+[Term]
+id: LEQ:0000107
+name: centrifuge
+def: "A rotating device that separates particles or liquids by differential sedimentation under centrifugal force, from benchtop microcentrifuges to floor-standing ultracentrifuges." [LEQ:0000107]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0400106 ! centrifuge
+
+[Term]
+id: LEQ:0000108
+name: microcentrifuge
+def: "A small benchtop centrifuge with a fixed-angle or swing-out rotor that accepts 1.5 or 2 milliliter microcentrifuge tubes (commonly in 24- or 48-position racks); the standard workbench centrifuge of the wet lab." [LEQ:0000108]
+is_a: LEQ:0000107 ! centrifuge
+synonym: "benchtop microcentrifuge" EXACT []
+xref: OBI:0001100 ! microcentrifuge
+
+[Term]
+id: LEQ:0000109
+name: microplate reader
+def: "An instrument that measures optical or kinetic properties of samples in a microplate (absorbance, fluorescence, luminescence, or kinetic time courses), reading one or more plates at a time." [LEQ:0000109]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "plate reader" EXACT []
+synonym: "microtiter plate reader" EXACT []
+xref: OBI:0001058 ! microplate reader
+
+[Term]
+id: LEQ:0000110
+name: incubator
+def: "An enclosed chamber that maintains a controlled temperature (and optionally humidity or gas composition, e.g. 5% CO2 for cell culture) over an extended period to support the growth or reaction of samples." [LEQ:0000110]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "CO2 incubator" NARROW []
+xref: OBI:0000136 ! incubator
+
+[Term]
+id: LEQ:0000111
+name: electronic pipette
+def: "A pipette whose aspiration and dispensing volumes are set and recorded electronically, with a digital display and optional data logging; typically single-channel." [LEQ:0000111]
+is_a: LEQ:0000102 ! pipette
+xref: OBI:0001083 ! multichannel electronic pipette
+
+[Term]
+id: LEQ:0000112
+name: repeater pipette
+def: "An electronic pipette that dispenses the same small volume a fixed number of times from a single aspiration, used for serial dilutions and small-volume plating." [LEQ:0000112]
+is_a: LEQ:0000111 ! electronic pipette
+xref: OBI:0001101 ! electronic repeater pipette
+
+[Term]
+id: LEQ:0000113
+name: syringe pump
+def: "A device that dispenses or aspirates a controlled volume or flow rate of liquid using a motor-driven syringe barrel; used for perfusion, injection, and low-flow chromatography." [LEQ:0000113]
+is_a: LEQ:0000101 ! liquid-handling equipment
+xref: OBI:0400100 ! syringe pump
+
+[Term]
+id: LEQ:0000114
+name: liquid extraction robot
+def: "An automated liquid handler specialized for nucleic acid or protein extraction workflows, with integrated lysis, binding, wash, and elution stations." [LEQ:0000114]
+is_a: LEQ:0000105 ! liquid handler
+xref: OBI:0001097 ! liquid extraction robot
+
+[Term]
+id: LEQ:0000115
+name: hybridization oven
+def: "A temperature-controlled chamber with a humidified environment and optional agitation, used to facilitate the annealing of labeled nucleic acid probes to a target on a membrane or array." [LEQ:0000115]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001075 ! hybridization oven
+
+[Term]
+id: LEQ:0000116
+name: incubator shaker
+def: "An incubator with an integrated orbital or reciprocal shaker, used to grow cultures in liquid media under controlled temperature and agitation." [LEQ:0000116]
+is_a: LEQ:0000110 ! incubator
+xref: OBI:0001076 ! incubator shaker
+
+[Term]
+id: LEQ:0000117
+name: temperature control bath
+def: "A bath of liquid (water, oil, or glycol) whose temperature is controlled to within a fraction of a degree, used to hold labware at a constant temperature; the classic forms are the water bath and the dry bath." [LEQ:0000117]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "water bath" NARROW []
+synonym: "dry bath" NARROW []
+xref: OBI:0400120 ! temperature control bath
+
+[Term]
+id: LEQ:0000118
+name: heating block
+def: "A temperature-controlled block (typically aluminum) that holds tubes or plates at a set temperature for short reactions; the classic forms are the 96-position PCR preheat block and the 24-position tube block." [LEQ:0000118]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0400108 ! heating block
+
+[Term]
+id: LEQ:0000119
+name: thermostatic circulator
+def: "A device that circulates a temperature-controlled fluid through a loop to a connected device (e.g. a water jacket, reactor, or column), providing precise external temperature control." [LEQ:0000119]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0000390 ! thermostatic circulator
+
+[Term]
+id: LEQ:0000120
+name: plate shaker
+def: "A device that agitates microplates on a flat or orbital axis to mix contents or maintain cells in suspension; the classic form is the orbital plate shaker." [LEQ:0000120]
+is_a: LEQ:0000196 ! lab shaker
+xref: OBI:0001094 ! plate shaker
+
+[Term]
+id: LEQ:0000121
+name: rocker
+def: "A device that agitates flasks or tubes on a reciprocating axis to mix contents or maintain cells in suspension; the classic form is the 20-degree reciprocating rocker for cell culture flasks." [LEQ:0000121]
+is_a: LEQ:0000196 ! lab shaker
+xref: OBI:0001103 ! rocker
+
+[Term]
+id: LEQ:0000122
+name: vortexer
+def: "A benchtop device that rapidly oscillates a small container to mix its contents by turbulent flow; the classic form is the microcentrifuge tube vortexer." [LEQ:0000122]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "vortex mixer" EXACT []
+xref: OBI:0400118 ! vortexer
+
+[Term]
+id: LEQ:0000123
+name: sonicator
+def: "A device that uses ultrasound to mix, lyse, or emulsify a sample by cavitation; the classic forms are the probe sonicator (for tubes) and the bath sonicator (for plates and multi-tube lysis)." [LEQ:0000123]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "ultrasonic homogenizer" RELATED []
+xref: OBI:0400114 ! sonicator
+
+[Term]
+id: LEQ:0000124
+name: homogenizer
+def: "A device that disrupts tissue or cell samples by mechanical shear, typically using a rotating blade or a reciprocating plunger in a chamber; the classic forms are the Dounce homogenizer and the tissue lyser." [LEQ:0000124]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0400109 ! homogenizer
+
+[Term]
+id: LEQ:0000125
+name: microplate washer
+def: "An automated device that dispenses, washes, and aspirates liquid from the wells of a microplate, used to clear wells between assay steps; the classic form is the peristaltic microplate washer." [LEQ:0000125]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001113 ! microplate washer
+
+[Term]
+id: LEQ:0000126
+name: vacuum manifold
+def: "A device that applies vacuum to a microplate or filter plate to draw liquid through a membrane, used for cell capture, filtration, and desalting; the classic form is the 96-well vacuum manifold." [LEQ:0000126]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001116 ! vacuum manifold
+
+[Term]
+id: LEQ:0000127
+name: lyophilizer
+def: "A device that removes water from a sample by freeze-drying (sublimation under vacuum), used to dry and preserve biological samples, proteins, and cell suspensions." [LEQ:0000127]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "freeze dryer" EXACT []
+xref: OBI:0001087 ! lyophilizer
+
+[Term]
+id: LEQ:0000128
+name: multimode microplate reader
+def: "A microplate reader capable of multiple detection modes (absorbance, fluorescence, luminescence, and optionally kinetic and polarized fluorescence) in a single instrument." [LEQ:0000128]
+is_a: LEQ:0000109 ! microplate reader
+xref: OBI:0001090 ! multimode microplate reader
+
+[Term]
+id: LEQ:0000129
+name: spectrophotometer
+def: "An instrument that measures the intensity of light absorbed, transmitted, or scattered by a sample as a function of wavelength, used for quantification of nucleic acids, proteins, and other solutes." [LEQ:0000129]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "spectrometer" NARROW []
+xref: OBI:0400115 ! spectrophotometer
+
+[Term]
+id: LEQ:0000130
+name: fluorometer
+def: "An instrument that measures the fluorescence emitted by a sample after excitation at a specific wavelength, used for quantification of fluorescently labeled nucleic acids, proteins, and assays." [LEQ:0000130]
+is_a: LEQ:0000129 ! spectrophotometer
+xref: OBI:0400143 ! fluorometer
+
+[Term]
+id: LEQ:0000131
+name: balance
+def: "A device that measures the mass of an object by comparing it to a known reference or by measuring the force of gravity on it; the classic forms are the analytical balance and the top-loading balance." [LEQ:0000131]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001135 ! balance
+
+[Term]
+id: LEQ:0000132
+name: analytical balance
+def: "A balance that measures mass to a resolution of 0.1 milligrams or better, used for precise weighing of reagents and samples." [LEQ:0000132]
+is_a: LEQ:0000131 ! balance
+xref: OBI:0001104 ! analytical balance
+
+[Term]
+id: LEQ:0000133
+name: top loading balance
+def: "A balance with a top-loading design that measures mass to a resolution of 1 milligram to 0.01 grams, used for routine weighing of reagents." [LEQ:0000133]
+is_a: LEQ:0000131 ! balance
+xref: OBI:0001066 ! top loading balance
+
+[Term]
+id: LEQ:0000134
+name: pH meter
+def: "An instrument that measures the hydrogen ion activity (pH) of a solution using an electrochemical glass electrode, used to quantify the acidity or alkalinity of a sample." [LEQ:0000134]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001047 ! pH meter
+
+[Term]
+id: LEQ:0000135
+name: densitometer
+def: "An instrument that measures the optical density of a stained band or spot on a membrane or gel, used for semi-quantitative analysis of protein or nucleic acid gels." [LEQ:0000135]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001062 ! densitometer
+
+[Term]
+id: LEQ:0000136
+name: gel imaging system
+def: "An instrument that captures images of stained gels (e.g. ethidium bromide, SYBR, or fluorescent protein gels) using a digital camera, used for visualization and documentation of nucleic acid or protein separations." [LEQ:0000136]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "gel doc" RELATED []
+xref: OBI:0001081 ! gel imaging system
+
+[Term]
+id: LEQ:0000137
+name: immunoblot scanner
+def: "An instrument that scans a membrane or blot with a specific light source and detector to quantify protein bands or spots by fluorescence, chemiluminescence, or colorimetric signal." [LEQ:0000137]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "blot scanner" EXACT []
+xref: OBI:0001099 ! immunoblot scanner
+
+[Term]
+id: LEQ:0000138
+name: array scanner
+def: "An instrument that scans a microarray or bead array to detect and quantify the hybridization or binding signal at each feature, used in genomics and proteomics." [LEQ:0000138]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0400104 ! array scanner
+
+[Term]
+id: LEQ:0000139
+name: flow cytometer
+def: "An instrument that measures the physical and chemical characteristics of cells or particles as they flow in a fluid stream through one or more laser beams, used for cell counting, sorting, and phenotyping." [LEQ:0000139]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "cell analyzer" RELATED []
+xref: OBI:0400044 ! flow cytometer
+
+[Term]
+id: LEQ:0000140
+name: cell sorter
+def: "A flow cytometer with the additional capability to physically sort cells into separate collection tubes based on measured characteristics, used for isolating specific cell populations." [LEQ:0000140]
+is_a: LEQ:0000139 ! flow cytometer
+synonym: "FACS" RELATED []
+xref: OBI:0400099 ! flow cytometer sorter
+
+[Term]
+id: LEQ:0000141
+name: mass spectrometer
+def: "An instrument that ionizes molecules and measures the mass-to-charge ratio of the ions, used for identification and quantification of proteins, peptides, small molecules, and metabolites." [LEQ:0000141]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "MS" RELATED []
+xref: OBI:0000049 ! mass spectrometer
+
+[Term]
+id: LEQ:0000142
+name: tandem mass spectrometer
+def: "A mass spectrometer with two or more stages of mass analysis, used for targeted peptide quantification (SRM/MRM) and structural elucidation." [LEQ:0000142]
+is_a: LEQ:0000141 ! mass spectrometer
+synonym: "MS/MS" RELATED []
+xref: OBI:0001088 ! tandem mass spectrometer
+
+[Term]
+id: LEQ:0000143
+name: NMR instrument
+def: "An instrument that uses nuclear magnetic resonance to determine the molecular structure, dynamics, and environment of atoms in a sample, used canonically for protein structure and metabolite identification." [LEQ:0000143]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "NMR spectrometer" EXACT []
+xref: OBI:0000566 ! NMR instrument
+
+[Term]
+id: LEQ:0000144
+name: gamma counter
+def: "An instrument that measures gamma radiation emitted by a radioactive sample, used for quantification of radiolabeled compounds in nuclear medicine and radiochemistry." [LEQ:0000144]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0000059 ! gamma counter
+
+[Term]
+id: LEQ:0000145
+name: scintillation counter
+def: "An instrument that measures light emitted from a scintillation cocktail when a radioactive sample decays, used for quantification of beta-emitting radiolabeled compounds." [LEQ:0000145]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001070 ! scintillation counter
+
+[Term]
+id: LEQ:0000146
+name: calorimeter
+def: "An instrument that measures the heat absorbed or released by a chemical or biological reaction, used for thermodynamic characterization and reaction kinetics." [LEQ:0000146]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0000930 ! calorimeter
+
+[Term]
+id: LEQ:0000147
+name: oscilloscope
+def: "An instrument that displays the voltage of a signal as a function of time, used for characterization of electrical signals in electrophysiology and electronics." [LEQ:0000147]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0000948 ! oscilloscope
+
+[Term]
+id: LEQ:0000148
+name: surface plasmon resonance instrument
+def: "An instrument that measures changes in refractive index at a sensor surface to detect molecular binding events in real time without labeling, used for kinetics and affinity measurement." [LEQ:0000148]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "SPR instrument" EXACT []
+synonym: "Biacore" RELATED []
+xref: OBI:0001136 ! surface plasmon resonance instrument
+
+[Term]
+id: LEQ:0000149
+name: autoclave
+def: "A pressurized chamber that sterilizes materials by sustained exposure to steam at 121 degree Celsius, used for decontamination of media, glassware, and waste." [LEQ:0000149]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001112 ! autoclave
+
+[Term]
+id: LEQ:0000150
+name: bioreactor
+def: "A vessel that maintains controlled conditions (temperature, pH, dissolved oxygen, agitation) for the growth of cells or microorganisms at scale, from benchtop bioreactors to industrial fermenters." [LEQ:0000150]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "fermenter" RELATED []
+xref: OBI:0001046 ! bioreactor
+
+[Term]
+id: LEQ:0000151
+name: cryostat
+def: "A device that maintains a sample at a temperature well below zero (typically -20 to -80 degree Celsius or liquid nitrogen temperature), used for sectioning frozen tissue or for long-term storage of samples." [LEQ:0000151]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001072 ! cryostat
+
+[Term]
+id: LEQ:0000152
+name: microtome
+def: "A device that cuts tissue into thin sections (1 to 50 micrometers) for microscopy, used canonically in histology and electron microscopy; the classic forms are the rotary microtome and the cryostat microtome." [LEQ:0000152]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0400168 ! microtome
+
+[Term]
+id: LEQ:0000153
+name: slide warmer
+def: "A device that holds microscope slides at a controlled temperature (typically 37 to 60 degree Celsius), used to dry slides or to maintain samples at a working temperature." [LEQ:0000153]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001131 ! slide warmer
+
+[Term]
+id: LEQ:0000154
+name: vacuum oven
+def: "A sealed chamber that removes solvent or water from a sample under reduced pressure, used for drying and degassing; the classic form is the rotary evaporator (rotavap) and the vacuum desiccator." [LEQ:0000154]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "rotary evaporator" NARROW []
+synonym: "rotavap" RELATED []
+xref: OBI:0001130 ! vacuum oven
+
+[Term]
+id: LEQ:0000155
+name: vacuum dryer
+def: "A device that removes solvent or water from a sample under vacuum at controlled temperature, used for concentrating and drying solutions; the classic form is the SpeedVac." [LEQ:0000155]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "speedvac" RELATED []
+xref: OBI:0400117 ! vacuum dryer
+
+[Term]
+id: LEQ:0000156
+name: gel dryer
+def: "A device that dries electrophoresis gels by warm air or vacuum, used to prepare gels for imaging or long-term storage." [LEQ:0000156]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0000404 ! gel dryer
+
+[Term]
+id: LEQ:0000157
+name: gel tank
+def: "A container that holds a gel and buffer for electrophoresis, with electrodes and a lid; the classic forms are the horizontal (polyacrylamide) and vertical (SDS-PAGE) gel tanks." [LEQ:0000157]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0400140 ! gel tank
+
+[Term]
+id: LEQ:0000158
+name: capillary blotter
+def: "A device that transfers nucleic acid or protein from a gel to a membrane by capillary action, used for Southern and Northern blotting." [LEQ:0000158]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001045 ! capillary blotter
+
+[Term]
+id: LEQ:0000159
+name: automatic staining machine
+def: "A device that automatically applies a sequence of stains to tissue sections on slides, used in histopathology to prepare slides for microscopy." [LEQ:0000159]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001063 ! automatic staining machine
+
+[Term]
+id: LEQ:0000160
+name: automatic tissue processor
+def: "A device that automatically dehydrates, clears, and infiltrates tissue sections with paraffin wax in a sequence of chemical baths, used in histopathology to prepare tissue for sectioning." [LEQ:0000160]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001064 ! automatic tissue processor
+
+[Term]
+id: LEQ:0000161
+name: tissue embedding station
+def: "A device that embeds tissue sections in paraffin wax blocks for sectioning, using a heated metal tray and a cooling bath; the classic form is the Leica Tissue-Tek." [LEQ:0000161]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001107 ! tissue embedding station
+
+[Term]
+id: LEQ:0000162
+name: perfusion station
+def: "A device that delivers a controlled flow of perfusate (e.g. fixative, buffer, or drug) to an organ or tissue, used for organ perfusion and ex vivo culture." [LEQ:0000162]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001067 ! perfusion station
+
+[Term]
+id: LEQ:0000163
+name: cell harvester
+def: "A device that detaches adherent cells from a culture surface, typically by enzymatic or mechanical action, used to prepare cells for counting, sorting, or downstream assays." [LEQ:0000163]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001119 ! cell harvester
+
+[Term]
+id: LEQ:0000164
+name: fluid pressure regulator
+def: "A device that maintains a constant gas or liquid pressure in a connected system, used to control gas flow in mass spectrometry, GC, and gas-phase chemistry." [LEQ:0000164]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0400045 ! fluid pressure regulator
+
+[Term]
+id: LEQ:0000165
+name: nucleic acid sequencer
+def: "An instrument that determines the order of nucleotide bases in a DNA or RNA molecule, used for genotyping, sequencing, and variant detection." [LEQ:0000165]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "sequencer" EXACT []
+xref: OBI:0001108 ! nucleic acid sequencer
+
+[Term]
+id: LEQ:0000166
+name: DNA sequencer
+def: "A nucleic acid sequencer specialized for DNA, using Sanger (capillary electrophoresis) or next-generation (sequencing by synthesis, ligation, or single-molecule) chemistry." [LEQ:0000166]
+is_a: LEQ:0000165 ! nucleic acid sequencer
+xref: OBI:0400103 ! DNA sequencer
+
+[Term]
+id: LEQ:0000167
+name: DNA synthesizer
+def: "An instrument that chemically synthesizes oligonucleotides (short DNA or RNA strands) of a specified sequence, used to produce primers, probes, and synthetic genes." [LEQ:0000167]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001056 ! DNA synthesizer
+
+[Term]
+id: LEQ:0000168
+name: oligonucleotide synthesizer
+def: "A DNA synthesizer specialized for the solid-phase synthesis of oligonucleotides up to about 200 bases in length." [LEQ:0000168]
+is_a: LEQ:0000167 ! DNA synthesizer
+xref: OBI:0400113 ! oligonucleotide synthesizer
+
+[Term]
+id: LEQ:0000169
+name: arrayer
+def: "A device that deposits spots of DNA, protein, or other reagent onto a substrate (microarray, bead, or chip) at precise positions, used to manufacture custom arrays." [LEQ:0000169]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "spotter" RELATED []
+xref: OBI:0400105 ! arrayer
+
+[Term]
+id: LEQ:0000170
+name: chip spotting device
+def: "A device that deposits reagents onto a microfluidic chip or lab-on-chip at defined positions, used to fabricate custom diagnostic and assay chips." [LEQ:0000170]
+is_a: LEQ:0000169 ! arrayer
+xref: OBI:0001049 ! chip spotting device
+
+[Term]
+id: LEQ:0000171
+name: nucleic acid extraction instrument
+def: "An automated instrument that extracts and purifies nucleic acids from a biological sample using a combination of lysis, binding, wash, and elution steps, typically in a microplate or cartridge format." [LEQ:0000171]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "nucleic acid purifier" RELATED []
+xref: OBI:0001114 ! nucleic acid extraction/purification instrument
+
+[Term]
+id: LEQ:0000172
+name: DNA extraction instrument
+def: "A nucleic acid extraction instrument specialized for DNA, using magnetic beads, spin columns, or silica-based chemistry." [LEQ:0000172]
+is_a: LEQ:0000171 ! nucleic acid extraction instrument
+xref: OBI:0001117 ! DNA extraction/purification instrument
+
+[Term]
+id: LEQ:0000173
+name: RNA extraction instrument
+def: "A nucleic acid extraction instrument specialized for RNA, typically with DNase treatment and a carrier-free elution step to protect RNA integrity." [LEQ:0000173]
+is_a: LEQ:0000171 ! nucleic acid extraction instrument
+xref: OBI:0001050 ! RNA extraction/purification instrument
+
+[Term]
+id: LEQ:0000174
+name: electrophoresis system
+def: "A device that separates molecules (nucleic acids, proteins) by size and charge as they migrate through a gel or capillary under an electric field." [LEQ:0000174]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001053 ! electrophoresis system
+
+[Term]
+id: LEQ:0000175
+name: gel electrophoresis system
+def: "An electrophoresis system that separates molecules in a polyacrylamide or agarose gel, used for size-based separation of DNA, RNA, and proteins." [LEQ:0000175]
+is_a: LEQ:0000174 ! electrophoresis system
+xref: OBI:0001121 ! gel electrophoresis system
+
+[Term]
+id: LEQ:0000176
+name: capillary electrophoresis instrument
+def: "An electrophoresis system that separates molecules in a narrow capillary filled with buffer, using automated injection and detection; used for DNA fragment analysis, genotyping, and protein analysis." [LEQ:0000176]
+is_a: LEQ:0000174 ! electrophoresis system
+xref: OBI:0001132 ! capillary electrophoresis instrument
+
+[Term]
+id: LEQ:0000177
+name: chromatography instrument
+def: "A device that separates components of a mixture by differential partitioning between a stationary phase and a mobile phase, used for purification and analysis of proteins, nucleic acids, small molecules, and metabolites." [LEQ:0000177]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0000485 ! chromatography instrument
+
+[Term]
+id: LEQ:0000178
+name: liquid chromatography instrument
+def: "A chromatography instrument in which the mobile phase is a liquid, used for separation of proteins, nucleic acids, small molecules, and metabolites; the classic forms are HPLC and UPLC." [LEQ:0000178]
+is_a: LEQ:0000177 ! chromatography instrument
+synonym: "HPLC" RELATED []
+xref: OBI:0001139 ! liquid chromatography instrument
+
+[Term]
+id: LEQ:0000179
+name: gas chromatography instrument
+def: "A chromatography instrument in which the mobile phase is a gas, used for separation of volatile and semi-volatile small molecules and metabolites." [LEQ:0000179]
+is_a: LEQ:0000177 ! chromatography instrument
+synonym: "GC" RELATED []
+xref: OBI:0000542 ! gas chromatography equipment
+
+[Term]
+id: LEQ:0000180
+name: protein separation apparatus
+def: "A device that separates proteins by size, charge, or affinity, used for purification and analysis; the classic forms are the protein purification system and the 2D electrophoresis system." [LEQ:0000180]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001082 ! protein separation apparatus
+
+[Term]
+id: LEQ:0000181
+name: patch clamp device
+def: "A device that measures ion current through a single ion channel or across the membrane of a single cell, used in electrophysiology for characterization of channel function." [LEQ:0000181]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001080 ! patch clamp device
+
+[Term]
+id: LEQ:0000182
+name: electrode puller
+def: "A device that draws glass or quartz capillary tubes into microelectrodes for patch clamp and intracellular recording, using heat and mechanical stretching." [LEQ:0000182]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0000955 ! electrode puller
+
+[Term]
+id: LEQ:0000183
+name: micropipette puller
+def: "A device that draws glass capillary tubes into pipettes for microinjection and patch clamp, using heat and mechanical stretching; distinct from an electrode puller in the geometry and use of the output." [LEQ:0000183]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0001124 ! micropipette puller
+
+[Term]
+id: LEQ:0000184
+name: microscope
+def: "An instrument that magnifies and images a sample using light, electrons, or other radiation, used for observation and analysis of cells, tissues, and materials." [LEQ:0000184]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "microscope" EXACT []
+xref: OBI:0400169 ! microscope
+
+[Term]
+id: LEQ:0000185
+name: image cytometer
+def: "An instrument that captures images of individual cells and measures their characteristics (size, shape, fluorescence) in a high-throughput manner, used for single-cell analysis." [LEQ:0000185]
+is_a: LEQ:0000139 ! flow cytometer
+xref: OBI:0400135 ! image cytometer
+
+[Term]
+id: LEQ:0000186
+name: freezer
+def: "A refrigerated storage unit that maintains a temperature at or below 0 degree Celsius, used for long-term storage of samples, reagents, and labware; the classic forms are the -20 degree Celsius and -80 degree Celsius freezers." [LEQ:0000186]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "ultra-low freezer" NARROW []
+synonym: "ULF" RELATED []
+
+[Term]
+id: LEQ:0000187
+name: biosafety cabinet
+def: "A ventilated enclosure that provides a controlled, filtered-air environment for handling biohazardous materials, protecting the operator, the sample, and the environment; the classic forms are BSC Class II and Class III." [LEQ:0000187]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "BSC" RELATED []
+synonym: "safety cabinet" EXACT []
+
+[Term]
+id: LEQ:0000188
+name: fume hood
+def: "A ventilated enclosure that captures and exhausts fumes, vapors, and dust generated by chemical operations, protecting the operator from inhalation exposure." [LEQ:0000188]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "chemical fume hood" EXACT []
+
+[Term]
+id: LEQ:0000189
+name: liquid nitrogen dewar
+def: "A vacuum-insulated container that holds liquid nitrogen (77 K) for long-term storage of biological samples in cryovials or straws." [LEQ:0000189]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "LN2 dewar" RELATED []
+
+[Term]
+id: LEQ:0000190
+name: vacuum pump
+def: "A device that removes gas from a sealed volume to create a vacuum, used in lyophilization, filtration, chromatography, and other applications requiring reduced pressure." [LEQ:0000190]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "vacuum pump" EXACT []
+
+[Term]
+id: LEQ:0000191
+name: gas cylinder
+def: "A high-pressure container that holds a compressed gas (e.g. nitrogen, argon, CO2, air) for laboratory use, with a regulator and hose for delivery to an instrument." [LEQ:0000191]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "gas cylinder" EXACT []
+
+[Term]
+id: LEQ:0000192
+name: power supply
+def: "A device that provides electrical power at a controlled voltage and current to a laboratory instrument or experiment." [LEQ:0000192]
+is_a: LEQ:0000100 ! lab equipment
+xref: OBI:0400142 ! power supply
+
+[Term]
+id: LEQ:0000193
+name: CO2 source
+def: "A source of carbon dioxide gas for laboratory use, typically a gas cylinder or a CO2 generator, used to supply CO2 to incubators and bioreactors." [LEQ:0000193]
+is_a: LEQ:0000100 ! lab equipment
+
+[Term]
+id: LEQ:0000194
+name: water purification system
+def: "A device that purifies water to a specified grade (deionized, milli-Q, ultrapure) for laboratory use, using a combination of ion exchange, reverse osmosis, and UV treatment." [LEQ:0000194]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "millipore system" RELATED []
+
+[Term]
+id: LEQ:0000195
+name: ultrasonic cleaner
+def: "A device that uses ultrasound in a liquid bath to clean small items (pipette tips, glassware, forceps) by cavitation, used for decontamination and cleaning of labware." [LEQ:0000195]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "ultrasonic bath" EXACT []
+
+[Term]
+id: LEQ:0000196
+name: lab shaker
+def: "A generic device that agitates labware (flasks, tubes, plates) on a fixed axis to mix contents or maintain cells in suspension; the parent class for plate shakers, rockers, and orbital shakers." [LEQ:0000196]
+is_a: LEQ:0000100 ! lab equipment
+synonym: "shaker" EXACT []
+
+[Term]
+id: LEQ:0000197
+name: orbital shaker
+def: "A lab shaker that agitates labware on a circular (orbital) axis, used to mix cell culture flasks and microplates." [LEQ:0000197]
+is_a: LEQ:0000196 ! lab shaker
+synonym: "orbital shaker" EXACT []
+
+[Term]
+id: LEQ:0000198
+name: reciprocating shaker
+def: "A lab shaker that agitates labware on a back-and-forth (reciprocating) axis, used to mix cell culture flasks and microplates." [LEQ:0000198]
+is_a: LEQ:0000196 ! lab shaker
+synonym: "reciprocating shaker" EXACT []
+
+[Term]
+id: LEQ:0000199
+name: water bath shaker
+def: "A lab shaker in which labware is immersed in a temperature-controlled water bath, used for incubation of cultures in liquid media with mixing." [LEQ:0000199]
+is_a: LEQ:0000196 ! lab shaker
+synonym: "water bath shaker" EXACT []

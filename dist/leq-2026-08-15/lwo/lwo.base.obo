@@ -1,0 +1,579 @@
+format-version: 1.2
+ontology: lwo
+data-version: 2026-08-15
+id: https://brad-usredoxlabs.github.io/lab-ontologies/lwo
+description: "Labware Ontology (LWO). An ontology of laboratory labware — the physical containers and consumables used to hold, move, and process samples and reagents: vessels (tubes, vials, bottles, flasks, reservoirs), microplates and aluminum blocks, pipette tips and tip racks, racks, lids and seals, filters, columns, and culture ware. Labware is the passive counterpart of laboratory equipment (LEQ). LWO is grounded in BFO material entity and cross-mapped to OBI where OBI provides a matching concept."
+import: ../imports/bfo.obo
+import: ../imports/iao.owl
+import: ../imports/obi.obo
+import: ../imports/uo.obo
+property_value: http://purl.org/dc/elements/1.1/contributor "Brad (Computable Lab)" xsd:string
+property_value: http://purl.org/dc/elements/1.1/creator "Brad (Computable Lab)" xsd:string
+property_value: http://purl.org/dc/elements/1.1/license "http://creativecommons.org/licenses/by/4.0/" xsd:string
+property_value: http://purl.obolibrary.org/obo/IAO_0000117 "https://github.com/brad-usredoxlabs/lab-ontologies/issues" xsd:string
+property_value: http://purl.obolibrary.org/obo/IAO_0000116 "brad-usredoxlabs.github.io/lab-ontologies/lwo" xsd:string
+property_value: http://purl.org/dc/terms/source "https://brad-usredoxlabs.github.io/lab-ontologies/lwo" xsd:string
+# oboInOwl:id = LWO
+
+[Typedef]
+id: LWO:0000001
+name: has nominal volume
+def: "The relationship between a piece of labware and its nominal (rated) volume — the volume at which the labware is catalogued, typically close to but less than the maximum fill volume. Values are expressed in UO:0000101 (microliter) or UO:0000098 (milliliter)." [LWO:0000001]
+domain: LWO:0000100 ! labware
+
+[Typedef]
+id: LWO:0000002
+name: has maximum working volume
+def: "The relationship between a piece of labware and its maximum working volume — the largest volume that can be reliably dispensed or aspirated from it in automated liquid handling. Values are expressed in UO:0000101 (microliter) or UO:0000098 (milliliter)." [LWO:0000002]
+domain: LWO:0000100 ! labware
+
+[Typedef]
+id: LWO:0000003
+name: has well count
+def: "The relationship between a multi-well labware item and the number of wells it contains." [LWO:0000003]
+domain: LWO:0000100 ! labware
+
+[Typedef]
+id: LWO:0000004
+name: has bottom geometry
+def: "The relationship between a piece of labware and the shape of the bottom of its well(s) or body — flat, V-shaped, U-shaped, round, or conical — which determines settling, recovery, and liquid-class behaviour in automated handling." [LWO:0000004]
+domain: LWO:0000100 ! labware
+
+[Typedef]
+id: LWO:0000005
+name: is made of material
+def: "The relationship between a piece of labware and the material of which its body is made (e.g. polypropylene, polystyrene, glass, polycarbonate, polyethylene terephthalate, aluminum)." [LWO:0000005]
+domain: LWO:0000100 ! labware
+
+[Typedef]
+id: LWO:0000006
+name: has sterility
+def: "The relationship between a piece of labware and its sterility state — sterile (gamma or ETO sterilized, single-use), autoclavable, or non-sterile." [LWO:0000006]
+domain: LWO:0000100 ! labware
+
+[Typedef]
+id: LWO:0000007
+name: has surface treatment
+def: "The relationship between a piece of labware and a surface treatment applied to its wetted interior, e.g. tissue-culture treated, low-binding, or a specific coating." [LWO:0000007]
+domain: LWO:0000100 ! labware
+
+[Typedef]
+id: LWO:0000008
+name: has well pitch
+def: "The relationship between a microplate and the center-to-center spacing of its wells; the SBS standard pitch is 9 millimeters (UO:0000016)." [LWO:0000008]
+domain: LWO:0000100 ! labware
+
+[Typedef]
+id: LWO:0000009
+name: has well depth
+def: "The relationship between a piece of labware and the depth of its well(s) or body from rim to bottom, expressed in UO:0000016 (millimeter)." [LWO:0000009]
+domain: LWO:0000100 ! labware
+
+[Typedef]
+id: LWO:0000010
+name: has skirt type
+def: "The relationship between a microplate and the geometry of its outer wall — full skirt (wells extend to the plate edge), half skirt, or no skirt (individual well wells) — which determines plate compatibility with adapters, lids, and handlers." [LWO:0000010]
+domain: LWO:0000100 ! labware
+
+[Term]
+id: LWO:0000100
+name: labware
+def: "A processed material entity designed to contain, hold, or transfer a sample or reagent, as opposed to being designed to act upon it; labware is the passive physical container or consumable of a wet lab workflow (tubes, plates, tips, vials, bottles, flasks, racks, lids, filters, columns). The counterpart concept for devices that act on samples is laboratory equipment (LEQ:0000100)." [LWO:0000100]
+is_a: BFO:0000040 ! material entity
+synonym: "labware item" RELATED []
+synonym: "wetware" RELATED []
+xref: OBI:0000967 ! container
+
+[Term]
+id: LWO:0000101
+name: vessel
+def: "A labware item with an open top and a body sized to hold a single bulk volume of liquid, ranging from milliliters (tubes, vials) to liters (bottles, flasks)." [LWO:0000101]
+is_a: LWO:0000100 ! labware
+
+[Term]
+id: LWO:0000102
+name: tube
+def: "A long, narrow cylindrical vessel with a closed bottom and an open top, typically closed by a cap; the canonical forms are the microcentrifuge and conical centrifuge tubes." [LWO:0000102]
+is_a: LWO:0000101 ! vessel
+
+[Term]
+id: LWO:0000103
+name: microcentrifuge tube
+def: "A small plastic tube with a nominal volume of about 0.5, 1.5, or 2 milliliters, closed by a snap or screw cap; the standard low-volume sample container of the wet lab." [LWO:0000103]
+is_a: LWO:0000102 ! tube
+synonym: "eppendorf tube" RELATED [http://en.wikipedia.org/wiki/Microcentrifuge_tube]
+synonym: "spin tube" RELATED []
+
+[Term]
+id: LWO:0000104
+name: conical centrifuge tube
+def: "A larger conical-bottomed plastic tube with a nominal volume of 15 or 50 milliliters, closed by a screw or snap cap; used for cell culture, precipitation, and centrifugation." [LWO:0000104]
+is_a: LWO:0000102 ! tube
+synonym: "conical tube" EXACT []
+synonym: "falcon tube" RELATED []
+
+[Term]
+id: LWO:0000105
+name: PCR tube
+def: "A small tube with a nominal volume of 0.1 to 1 milliliter, closed by a flat cap, designed to fit a thermal cycler block; used for polymerase chain reaction and other cycling reactions." [LWO:0000105]
+is_a: LWO:0000102 ! tube
+synonym: "pcr tube" EXACT []
+synonym: "0.2 ml tube" NARROW []
+
+[Term]
+id: LWO:0000106
+name: PCR strip
+def: "A rack of eight or ten connected PCR tubes that can be loaded into a thermal cycler as a single unit." [LWO:0000106]
+is_a: LWO:0000105 ! PCR tube
+synonym: "8-tube strip" NARROW []
+synonym: "10-tube strip" NARROW []
+
+[Term]
+id: LWO:0000107
+name: NMR tube
+def: "A long, thin glass or plastic tube with a nominal volume of about 3 to 5 milliliters and a bore of 5 or 3 millimeters, used to hold samples in a nuclear magnetic resonance spectrometer." [LWO:0000107]
+is_a: LWO:0000102 ! tube
+synonym: "nmr tube" EXACT []
+xref: OBI:0000578 ! NMR sample tube
+
+[Term]
+id: LWO:0000108
+name: vial
+def: "A small, narrow, cylindrical vessel with a threaded or snap top, typically of 1 to 20 milliliters; distinct from a tube in having a short, wide opening and a built-in or separate cap." [LWO:0000108]
+is_a: LWO:0000101 ! vessel
+synonym: "vial" EXACT []
+xref: OBI:0000522 ! vial
+
+[Term]
+id: LWO:0000109
+name: cryovial
+def: "A small vial, typically of 1 to 2 milliliters with a screw cap, designed for storage of biological samples at cryogenic temperatures (e.g. -80 degree Celsius or liquid nitrogen); the cap is often ribbed for torque at low temperature." [LWO:0000109]
+is_a: LWO:0000108 ! vial
+
+[Term]
+id: LWO:0000110
+name: culture vial
+def: "A vial with a vented or gas-permeable cap and a large surface-area-to-volume ratio, used for adherent cell culture; the classic form is the 25 or 75 square centimeter vented cap culture vial." [LWO:0000110]
+is_a: LWO:0000108 ! vial
+synonym: "vented cap culture vial" NARROW []
+synonym: "tissue culture vial" EXACT []
+
+[Term]
+id: LWO:0000111
+name: bottle
+def: "A labware vessel with a wide cylindrical body and a narrow neck, typically of 50 milliliters to several liters, closed by a screw cap or stopper; used for storage and transport of bulk reagents and solvents." [LWO:0000111]
+is_a: LWO:0000101 ! vessel
+
+[Term]
+id: LWO:0000112
+name: glass bottle
+def: "A bottle made of glass, used where chemical compatibility with glass is required (e.g. solvents, acids, bases)." [LWO:0000112]
+is_a: LWO:0000111 ! bottle
+xref: OBI:0002681 ! glass bottle
+
+[Term]
+id: LWO:0000113
+name: reagent bottle
+def: "A plastic or glass bottle with a nominal volume of 50 milliliters to 4 liters, used to store reagents; commonly polypropylene, polycarbonate, or glass." [LWO:0000113]
+is_a: LWO:0000111 ! bottle
+synonym: "reagent container" RELATED []
+
+[Term]
+id: LWO:0000114
+name: flask
+def: "A labware vessel with a wide body, a narrow neck, and an open top, used for mixing, heating, and reacting bulk liquids; distinguished from a bottle by its shape and by being used in active workflows rather than storage." [LWO:0000114]
+is_a: LWO:0000101 ! vessel
+synonym: "erlenmeyer flask" NARROW []
+
+[Term]
+id: LWO:0000115
+name: Erlenmeyer flask
+def: "A flask with a conical body and a flat bottom, closed by a ground glass stopper or screw cap; the standard mixing and titration flask." [LWO:0000115]
+is_a: LWO:0000114 ! flask
+synonym: "erlenmeyer flask" EXACT []
+synonym: "conical flask" EXACT []
+
+[Term]
+id: LWO:0000116
+name: round-bottom flask
+def: "A flask with a spherical body and a narrow neck, used for distillation and heating under reflux; must be held in a clamp or stand." [LWO:0000116]
+is_a: LWO:0000114 ! flask
+synonym: "boiling flask" RELATED []
+
+[Term]
+id: LWO:0000117
+name: reservoir
+def: "A labware item with a large open top and a volume of tens to hundreds of milliliters, used to hold a bulk volume of reagent or sample from which smaller volumes are dispensed; distinct from a bottle in being designed for active workflow use." [LWO:0000117]
+is_a: LWO:0000100 ! labware
+synonym: "reagent reservoir" EXACT []
+
+[Term]
+id: LWO:0000118
+name: trough
+def: "A long, narrow reservoir with a rectangular cross section, used to hold a bulk volume of liquid or to collect waste; the classic form is the 1-liter trough on a liquid-handling deck." [LWO:0000118]
+is_a: LWO:0000117 ! reservoir
+
+[Term]
+id: LWO:0000119
+name: waste container
+def: "A labware item designed to receive liquid waste from a workflow; on automated decks this is a fixed or disposable trough positioned to catch aspirated waste." [LWO:0000119]
+is_a: LWO:0000117 ! reservoir
+synonym: "waste trough" RELATED []
+synonym: "waste well" RELATED []
+xref: OBI:0400102 ! waste tank
+
+[Term]
+id: LWO:0000120
+name: microplate
+def: "A labware item consisting of an array of individual wells arranged in a rectangular grid, standardized by the SBS format with a 9 millimeter well pitch; well counts range from 6 to 1536." [LWO:0000120]
+is_a: LWO:0000100 ! labware
+synonym: "multiwell plate" EXACT []
+synonym: "microtiter plate" EXACT []
+synonym: "well plate" EXACT []
+xref: OBI:0000192 ! microtiter plate
+
+[Term]
+id: LWO:0000121
+name: well plate
+def: "A microplate with a nominal volume per well of 1 microliter to 20 milliliters; the generic class for all well-count and application subtypes." [LWO:0000121]
+is_a: LWO:0000120 ! microplate
+synonym: "well plate" EXACT []
+
+[Term]
+id: LWO:0000122
+name: 6-well plate
+def: "A well plate with 6 wells (1 row x 6 columns or 2 x 3), each with a nominal volume of about 15 to 20 milliliters; used for cell culture and high-volume assays." [LWO:0000122]
+is_a: LWO:0000121 ! well plate
+synonym: "6 well plate" EXACT []
+
+[Term]
+id: LWO:0000123
+name: 12-well plate
+def: "A well plate with 12 wells (3 x 4), each with a nominal volume of about 5 to 8 milliliters; used for cell culture and mid-volume assays." [LWO:0000123]
+is_a: LWO:0000121 ! well plate
+synonym: "12 well plate" EXACT []
+
+[Term]
+id: LWO:0000124
+name: 24-well plate
+def: "A well plate with 24 wells (4 x 6), each with a nominal volume of about 2 to 3.5 milliliters; used for cell culture and mid-volume assays." [LWO:0000124]
+is_a: LWO:0000121 ! well plate
+synonym: "24 well plate" EXACT []
+
+[Term]
+id: LWO:0000125
+name: 48-well plate
+def: "A well plate with 48 wells (6 x 8), each with a nominal volume of about 1 to 1.6 milliliters; used for cell culture and assays." [LWO:0000125]
+is_a: LWO:0000121 ! well plate
+synonym: "48 well plate" EXACT []
+
+[Term]
+id: LWO:0000126
+name: 96-well plate
+def: "A well plate with 96 wells (8 rows x 12 columns), each with a nominal volume of 100 microliters to 2 milliliters; the canonical format of high-throughput biology, with a 9 millimeter SBS well pitch." [LWO:0000126]
+is_a: LWO:0000121 ! well plate
+synonym: "96 well plate" EXACT []
+synonym: "96-well microplate" EXACT []
+
+[Term]
+id: LWO:0000127
+name: PCR plate
+def: "A 96-well plate with a nominal well volume of 50 to 200 microliters and a full skirt, designed for use in a thermal cycler; wells are typically flat-bottomed with a low volume footprint." [LWO:0000127]
+is_a: LWO:0000126 ! 96-well plate
+synonym: "pcr plate" EXACT []
+synonym: "pcr well plate" EXACT []
+
+[Term]
+id: LWO:0000128
+name: assay plate
+def: "A 96-well plate with a nominal well volume of 100 to 500 microliters, designed for biochemical and cell-based assays; typically flat-bottomed and available in clear, white, or black." [LWO:0000128]
+is_a: LWO:0000126 ! 96-well plate
+synonym: "assay well plate" RELATED []
+
+[Term]
+id: LWO:0000129
+name: filter plate
+def: "A 96-well plate in which each well contains a membrane filter, used to capture cells or particulates from a liquid sample; the classic form is the 24- or 96-well filter plate for cell separation." [LWO:0000129]
+is_a: LWO:0000120 ! microplate
+
+[Term]
+id: LWO:0000130
+name: deep-well plate
+def: "A 96-well plate with a nominal well volume of 1 to 2.4 milliliters and a deep, narrow well, used for sample storage, reagent preparation, and headspace analysis." [LWO:0000130]
+is_a: LWO:0000126 ! 96-well plate
+synonym: "deep well plate" EXACT []
+
+[Term]
+id: LWO:0000131
+name: cell culture plate
+def: "A well plate with a tissue-culture-treated bottom surface, used for the growth of adherent cells; available in 6 to 384 well formats." [LWO:0000131]
+is_a: LWO:0000121 ! well plate
+synonym: "tissue culture plate" EXACT []
+synonym: "tc-treated plate" RELATED []
+
+[Term]
+id: LWO:0000132
+name: 384-well plate
+def: "A well plate with 384 wells (16 x 24), each with a nominal volume of 25 to 120 microliters, with a 4.5 millimeter well pitch; used for high-throughput screening and genotyping." [LWO:0000132]
+is_a: LWO:0000121 ! well plate
+synonym: "384 well plate" EXACT []
+
+[Term]
+id: LWO:0000133
+name: 1536-well plate
+def: "A well plate with 1536 wells (32 x 48), each with a nominal volume of 20 to 60 microliters, with a 2.5 millimeter well pitch; used for ultra-high-throughput screening." [LWO:0000133]
+is_a: LWO:0000121 ! well plate
+synonym: "1536 well plate" EXACT []
+
+[Term]
+id: LWO:0000134
+name: aluminum block
+def: "A multi-well block made of aluminum, used as a heat exchanger to hold tubes or plates at a controlled temperature (e.g. on a temperature module or in a heat block); the classic forms are the 24-position and 96-position block." [LWO:0000134]
+is_a: LWO:0000100 ! labware
+synonym: "aluminum block" EXACT []
+synonym: "heating block" RELATED []
+
+[Term]
+id: LWO:0000135
+name: 24-position aluminum block
+def: "An aluminum block with 24 positions, each sized for a 0.5 to 2 milliliter microcentrifuge tube." [LWO:0000135]
+is_a: LWO:0000134 ! aluminum block
+
+[Term]
+id: LWO:0000136
+name: 96-position aluminum block
+def: "An aluminum block with 96 positions in an 8 x 12 grid, each sized for a 0.2 milliliter PCR tube or a 96-well plate well." [LWO:0000136]
+is_a: LWO:0000134 ! aluminum block
+
+[Term]
+id: LWO:0000140
+name: liquid-handling consumable
+def: "A labware item that is consumed (used up or discarded) during a liquid-handling operation: pipette tips, tip racks, and the like." [LWO:0000140]
+is_a: LWO:0000100 ! labware
+
+[Term]
+id: LWO:0000141
+name: pipette tip
+def: "A disposable conical or cylindrical consumable that fits onto a pipette nozzle, used to aspirate and dispense a controlled volume of liquid; nominal volumes range from 1 to 5000 microliters." [LWO:0000141]
+is_a: LWO:0000140 ! liquid-handling consumable
+synonym: "pipette tip" EXACT []
+synonym: "tip" RELATED []
+synonym: "dispenser tip" RELATED []
+
+[Term]
+id: LWO:0000142
+name: filtered pipette tip
+def: "A pipette tip with an integrated membrane filter that blocks aerosols and particulates between the tip and the pipette; used for PCR and other applications where aerosol contamination must be prevented." [LWO:0000142]
+is_a: LWO:0000141 ! pipette tip
+synonym: "filter tip" EXACT []
+
+[Term]
+id: LWO:0000143
+name: fixed tip
+def: "A pipette tip that is permanently attached to the pipette body rather than disposable; the classic form is the fixed tip on a Hamilton liquid handler." [LWO:0000143]
+is_a: LWO:0000141 ! pipette tip
+synonym: "fixed tip" EXACT []
+
+[Term]
+id: LWO:0000144
+name: tip rack
+def: "A rack that holds an array of pipette tips, typically 96 in an 8 x 12 grid, in a standardized footprint for automated liquid handling." [LWO:0000144]
+is_a: LWO:0000140 ! liquid-handling consumable
+synonym: "tip rack" EXACT []
+
+[Term]
+id: LWO:0000145
+name: 96-position tip rack
+def: "A tip rack with 96 tip positions in an 8 x 12 grid, the standard format for automated liquid handling; the classic forms are the 10, 20, 300, 1000, and 5000 microliter racks." [LWO:0000145]
+is_a: LWO:0000144 ! tip rack
+synonym: "96 tip rack" EXACT []
+
+[Term]
+id: LWO:0000146
+name: tip box
+def: "A sealed box of pipette tips, typically 250 to 1000 tips, that opens to a tip rack; the box is the unit of purchase and the rack is the unit of use." [LWO:0000146]
+is_a: LWO:0000144 ! tip rack
+synonym: "tip box" EXACT []
+
+[Term]
+id: LWO:0000147
+name: tip lid
+def: "A lid that seals a tip rack or tip box to maintain sterility before use." [LWO:0000147]
+is_a: LWO:0000100 ! labware
+synonym: "tip rack lid" RELATED []
+
+[Term]
+id: LWO:0000150
+name: rack
+def: "A labware item with an array of positions for holding tubes, vials, plates, or other labware items; the rack is the unit that is placed on a deck or in a storage location." [LWO:0000150]
+is_a: LWO:0000100 ! labware
+
+[Term]
+id: LWO:0000151
+name: tube rack
+def: "A rack with an array of positions for holding tubes; the classic forms are the 24-position microcentrifuge tube rack and the 15 or 50 milliliter conical tube rack." [LWO:0000151]
+is_a: LWO:0000150 ! rack
+synonym: "tube rack" EXACT []
+
+[Term]
+id: LWO:0000152
+name: vial rack
+def: "A rack with an array of positions for holding vials, typically cryovials or culture vials." [LWO:0000152]
+is_a: LWO:0000150 ! rack
+
+[Term]
+id: LWO:0000153
+name: plate rack
+def: "A rack with an array of positions for holding microplates, typically for storage at 4 or -20 degree Celsius." [LWO:0000153]
+is_a: LWO:0000150 ! rack
+synonym: "plate rack" EXACT []
+
+[Term]
+id: LWO:0000154
+name: plate carrier
+def: "A rack designed to hold a single microplate or a small number of microplates, with a footprint that fits a specific deck position or module." [LWO:0000154]
+is_a: LWO:0000150 ! rack
+
+[Term]
+id: LWO:0000155
+name: PCR tube rack
+def: "A rack with an array of positions for holding PCR tubes or PCR strips, typically 96 positions in an 8 x 12 grid." [LWO:0000155]
+is_a: LWO:0000150 ! rack
+
+[Term]
+id: LWO:0000156
+name: cryovial rack
+def: "A rack with an array of positions for holding cryovials, designed for storage in a -80 degree Celsius freezer or liquid nitrogen dewar; the classic form is the 50-position rack." [LWO:0000156]
+is_a: LWO:0000150 ! rack
+
+[Term]
+id: LWO:0000160
+name: lid or seal
+def: "A labware item that closes or seals another labware item: plate lids, PCR seals, snap caps, and screw caps." [LWO:0000160]
+is_a: LWO:0000100 ! labware
+synonym: "cap" NARROW []
+
+[Term]
+id: LWO:0000161
+name: plate lid
+def: "A lid that covers the top of a microplate, maintaining sterility and preventing evaporation; the classic forms are the flat plate lid and the concave plate lid." [LWO:0000161]
+is_a: LWO:0000160 ! lid or seal
+synonym: "plate lid" EXACT []
+synonym: "microplate lid" EXACT []
+
+[Term]
+id: LWO:0000162
+name: PCR plate seal
+def: "A thin, transparent film that seals the wells of a PCR plate, allowing gas exchange for some applications while preventing evaporation and contamination; the classic form is the 96-well PCR adhesive seal." [LWO:0000162]
+is_a: LWO:0000160 ! lid or seal
+synonym: "pcr seal" EXACT []
+synonym: "pcr adhesive seal" EXACT []
+
+[Term]
+id: LWO:0000163
+name: snap cap
+def: "A cap that attaches to a tube or vial by a snap-on friction fit, without threads; the classic form is the microcentrifuge tube snap cap." [LWO:0000163]
+is_a: LWO:0000160 ! lid or seal
+synonym: "snap cap" EXACT []
+
+[Term]
+id: LWO:0000164
+name: screw cap
+def: "A cap that attaches to a tube or vial by a threaded fit; the classic forms are the conical tube screw cap and the cryovial screw cap." [LWO:0000164]
+is_a: LWO:0000160 ! lid or seal
+synonym: "screw cap" EXACT []
+
+[Term]
+id: LWO:0000165
+name: universal lid
+def: "A rigid lid designed to cover multiple plate formats (96 and 384 well), used on automated liquid handling decks to maintain sterility between runs." [LWO:0000165]
+is_a: LWO:0000161 ! plate lid
+
+[Term]
+id: LWO:0000170
+name: filter
+def: "A labware item that separates a liquid (or liquid sample) from particulates or cells by passing the liquid through a membrane or frit; the classic forms are the syringe filter and the vacuum manifold filter plate." [LWO:0000170]
+is_a: LWO:0000100 ! labware
+
+[Term]
+id: LWO:0000171
+name: syringe filter
+def: "A filter consisting of a membrane in a plastic or metal housing that fits onto a syringe, used to sterile-filter or clarify a small volume of liquid." [LWO:0000171]
+is_a: LWO:0000170 ! filter
+xref: OBI:0000543 ! syringe filter
+
+[Term]
+id: LWO:0000172
+name: vacuum manifold filter plate
+def: "A filter plate that sits on a vacuum manifold, used to capture cells or particulates from multiple samples in parallel under vacuum; the classic form is the 96-well vacuum manifold filter plate." [LWO:0000172]
+is_a: LWO:0000170 ! filter
+
+[Term]
+id: LWO:0000173
+name: filter paper
+def: "A disk of paper or membrane used to hold a sample or to filter a liquid; the classic forms are the Whatman disk and the nitrocellulose transfer membrane." [LWO:0000173]
+is_a: LWO:0000170 ! filter
+xref: OBI:0000151 ! filter paper
+
+[Term]
+id: LWO:0000180
+name: column
+def: "A labware item consisting of a tube or cartridge packed with a matrix (resin, beads, silica) that separates components of a liquid sample by affinity, size, charge, or hydrophobicity." [LWO:0000180]
+is_a: LWO:0000100 ! labware
+
+[Term]
+id: LWO:0000181
+name: chromatography column
+def: "A column used in chromatography to separate components of a liquid sample by differential partitioning between a stationary and a mobile phase." [LWO:0000181]
+is_a: LWO:0000180 ! column
+xref: OBI:0000038 ! chromatography column
+
+[Term]
+id: LWO:0000182
+name: spin column
+def: "A small column with a nominal volume of 0.5 to 1 milliliter that is separated by centrifugation; the classic form is the nucleic acid purification spin column." [LWO:0000182]
+is_a: LWO:0000180 ! column
+xref: OBI:0000570 ! spin column
+
+[Term]
+id: LWO:0000183
+name: desalting column
+def: "A column packed with a gel matrix that separates a sample from salts by size exclusion; the classic form is the gel filtration desalting column." [LWO:0000183]
+is_a: LWO:0000180 ! column
+synonym: "desalting column" EXACT []
+
+[Term]
+id: LWO:0000190
+name: culture ware
+def: "A labware item designed for the growth of cells or microorganisms: petri dishes, tissue culture dishes, and cell culture plates." [LWO:0000190]
+is_a: LWO:0000100 ! labware
+
+[Term]
+id: LWO:0000191
+name: petri dish
+def: "A shallow, cylindrical, open-topped culture vessel with a flat bottom, typically of 35, 60, or 100 millimeters diameter, used for the growth of cell cultures or microbial colonies." [LWO:0000191]
+is_a: LWO:0000190 ! culture ware
+synonym: "petri dish" EXACT []
+synonym: "cell culture dish" NARROW []
+
+[Term]
+id: LWO:0000192
+name: tissue culture dish
+def: "A shallow dish with a tissue-culture-treated bottom surface, typically of 35 to 150 millimeters diameter, used for the growth of adherent cells; the classic form is the 100 millimeter tissue culture dish." [LWO:0000192]
+is_a: LWO:0000191 ! petri dish
+synonym: "tc dish" RELATED []
+
+[Term]
+id: LWO:0000193
+name: deck adapter
+def: "A labware item that adapts a microplate or other labware to a specific robot module or deck position, changing the effective footprint, height, or well geometry; the classic forms are the 96-well deep-well adapter and the universal flat adapter." [LWO:0000193]
+is_a: LWO:0000100 ! labware
+synonym: "module adapter" EXACT []
+synonym: "plate adapter" RELATED []
+
+[Term]
+id: LWO:0000194
+name: plate holder
+def: "A labware item that holds a microplate in a fixed position on a deck or in a module, typically with a defined footprint and height." [LWO:0000194]
+is_a: LWO:0000100 ! labware
+synonym: "plate holder" EXACT []

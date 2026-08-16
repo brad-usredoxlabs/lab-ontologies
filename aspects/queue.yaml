@@ -1,0 +1,109 @@
+# Researcher aspect queue
+#
+# The hourly researcher cron (coder-senior-qwen profile) reads this
+# file, takes the FIRST aspect with status: pending, researches it
+# with web_search, adds/expand LWO or LEQ terms in
+# src/{lwo,leq}/*.base.obo following existing style, runs ./check.sh,
+# fixes failures, git commits, sets the aspect status to done (with a
+# note: field) and writes a short summary to aspects/done/<id>.md, and
+# stops. One aspect per run.
+#
+# To queue more work: append a new `- id:` block at the end with
+# status: pending. The researcher never reorders; it always takes the
+# first pending.
+#
+# status: pending | in_progress | done
+# ontology: lwo | leq | both  (which file(s) to touch)
+
+version: 1
+
+aspects:
+  - id: integra-pipette-tips
+    title: Integra / Eppendorf pipette tips for automation
+    ontology: lwo
+    status: pending
+    detail: >
+      Research Integra/Eppendorf brand pipette tip lines for automated
+      liquid handling (Bravo, Hamilton, etc.): 96-channel tip families
+      (10/20/30/100/200/300/500/1000/5000 uL), filtered vs unfiltered,
+      conical vs straight, and the rack form factor. Confirm or refine
+      the LWO tip classes (LWO:0000141 pipette tip, LWO:0000142
+      filtered, LWO:0000144/145 tip rack) — add a brand-agnostic
+      "96-channel tip family" note in the def if needed. Do NOT create
+      brand classes (brands are product-catalog data, not ontology).
+      Add a crosswalk row to docs/crosswalk.md.
+
+  - id: agilent-bravo-labware
+    title: Agilent Bravo liquid handler models + compatible tip families
+    ontology: both
+    status: pending
+    detail: >
+      Research the Agilent Bravo (and Bravo II) liquid handler: models,
+      single/8/96-channel head options, and the tip families it
+      accepts. Confirm LEQ liquid handler class (LEQ:0000105) def
+      covers a 96-channel deck robot; add a synonym "Bravo" only if it
+      is a genuinely distinct concept (it is not — keep brand in the
+      catalog, not the ontology). Crosswalk note for Bravo tip racks
+      (LWO:0000145).
+
+  - id: corning-microplate-catalog
+    title: Corning microplate catalog (3632, 3635, 3795, etc.)
+    ontology: lwo
+    status: pending
+    detail: >
+      Research Corning microplate catalog numbers and map each to an
+      LWO class: 3632 (96-well, clear, round bottom), 3635 (96-well
+      flat), 3795 (PCR, full skirt), 3798 (PCR 0.1ml), deep-well
+      lines, TC-treated lines. Confirm the LWO microplate subclasses
+      (PCR LWO:0000127, deep-well LWO:0000130, TC LWO:0000131) are
+      sufficient; add a bottom-geometry or skirt note where Corning
+      distinguishes. Catalog numbers go in docs/crosswalk.md, NOT as
+      ontology classes.
+  - id: nest-products
+    title: Nest products (tips, tubes, reservoirs)
+    ontology: lwo
+    status: pending
+    detail: >
+      Research the Nest product line as represented in
+      pylabrobot/resources/nest/ (122-constructor inventory: tips
+      10-1000 uL, tubes 0.2-50 ml, plates 96-well, alu blocks,
+      reservoirs, trash). Confirm each maps cleanly to an LWO class;
+      add any missing LWO class (e.g. strip tip rack if Nest has one).
+      Update docs/crosswalk.md with the Nest rows.
+
+  - id: hamilton-labware
+    title: Hamilton liquid handler labware
+    ontology: lwo
+    status: pending
+    detail: >
+      Research Hamilton liquid handler (Microlab STAR, BioteXXN,
+      VANTAGE) labware: fixed tips vs consumable tips, the 1000-channel
+      head, and the dedicated labware set (pylabrobot has 14 hamilton
+      files). Confirm LWO covers fixed tip (LWO:0000143) and tip rack
+      (LWO:0000145); add a "1000-channel tip rack" or "fixed-tip
+      deck" class only if Hamilton's form is genuinely new. Update
+      ontology. Update docs/crosswalk.md with Hamilton rows.
+
+  - id: vortex-sonicator-shaker-brands
+    title: Vortex / sonicator / shaker brands + model classes
+    ontology: leq
+    status: pending
+    detail: >
+      Research benchtop vortex (e.g. VWR, Labnet, Thermo), sonicator
+      (e.g. Qsonica, Bio-Ruptor, Diasonix), and shaker (e.g. Eppendorf,
+      Innova, New Brunswick) product classes. These are OBI gaps
+      (LEQ:0000122 vortexer, LEQ:0000123 sonicator, LEQ:0000196 lab
+      shaker). Confirm the LEQ defs cover the real product variety
+      (probe vs bath sonicator, orbital vs reciprocating shaker);
+      refine defs/synonyms. Brands stay in the catalog, not the
+      ontology. Update docs/obi-gap-analysis.md "TBD" rows to the
+      LEQ class ids.
+
+# To add a new aspect, append below (copy this template):
+#  - id: my-new-aspect
+#    title: One-line title
+#    ontology: lwo
+#    status: pending
+#    detail: >
+#      What to research and which LWO/LEQ terms to add/refine.
+#      Keep brands/brands-SKUs in docs/crosswalk.md, not the ontology.
