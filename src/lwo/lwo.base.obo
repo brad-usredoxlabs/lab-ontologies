@@ -84,6 +84,12 @@ synonym: "labware item" RELATED []
 synonym: "wetware" RELATED []
 xref: OBI:0000967 ! container
 
+
+[Term]
+id: LWO:0000200
+name: deck support labware
+def: "Labware that adapts, holds, or positions other labware on a robot deck: deck adapters and plate holders." [LWO:0000200]
+is_a: LWO:0000100 ! labware
 [Term]
 id: LWO:0000101
 name: vessel
@@ -399,7 +405,7 @@ synonym: "tip box" EXACT []
 id: LWO:0000147
 name: tip lid
 def: "A lid that seals a tip rack or tip box to maintain sterility before use." [LWO:0000147]
-is_a: LWO:0000100 ! labware
+is_a: LWO:0000160 ! lid or seal
 synonym: "tip rack lid" RELATED []
 
 [Term]
@@ -567,7 +573,7 @@ synonym: "tc dish" RELATED []
 id: LWO:0000193
 name: deck adapter
 def: "A labware item that adapts a microplate or other labware to a specific robot module or deck position, changing the effective footprint, height, or well geometry; the classic forms are the 96-well deep-well adapter and the universal flat adapter." [LWO:0000193]
-is_a: LWO:0000100 ! labware
+is_a: LWO:0000200 ! deck support labware
 synonym: "module adapter" EXACT []
 synonym: "plate adapter" RELATED []
 
@@ -575,5 +581,5 @@ synonym: "plate adapter" RELATED []
 id: LWO:0000194
 name: plate holder
 def: "A labware item that holds a microplate in a fixed position on a deck or in a module, typically with a defined footprint and height." [LWO:0000194]
-is_a: LWO:0000100 ! labware
+is_a: LWO:0000200 ! deck support labware
 synonym: "plate holder" EXACT []
