@@ -2,7 +2,7 @@
 
 ## Two ontologies, one boundary rule
 
-**LWO (Labware Ontology)** — passive physical containers and
+**LWO (Laboratory Ware Ontology)** — passive physical containers and
 consumables: anything you put a sample *into*. Root `LWO:0000100
 labware` is a BFO material entity (`BFO:0000040`, the BFO 1.1
 numbering OBI 2026 uses) with an `xref:` to OBI:0000967 container.

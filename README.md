@@ -2,7 +2,7 @@
 
 Two small, BFO-grounded OBO ontologies for the wet lab:
 
-- **LWO — Labware Ontology** (`src/lwo/lwo.base.obo`): the physical
+- **LWO — Laboratory Ware Ontology** (`src/lwo/lwo.base.obo`): the physical
   containers and consumables — vessels (tubes, vials, bottles, flasks,
   reservoirs), microplates and aluminum blocks, pipette tips and tip
   racks, racks, lids and seals, filters, columns, culture ware.

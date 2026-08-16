@@ -2,7 +2,7 @@ format-version: 1.2
 ontology: lwo
 data-version: 2026-08-16
 id: https://brad-usredoxlabs.github.io/lab-ontologies/lwo
-description: "Labware Ontology (LWO). An ontology of laboratory labware — the physical containers and consumables used to hold, move, and process samples and reagents: vessels (tubes, vials, bottles, flasks, reservoirs), microplates and aluminum blocks, pipette tips and tip racks, racks, lids and seals, filters, columns, and culture ware. Labware is the passive counterpart of laboratory equipment (LEQ). LWO is grounded in BFO material entity and cross-mapped to OBI where OBI provides a matching concept."
+description: "Laboratory Ware Ontology (LWO). An ontology of laboratory labware — the physical containers and consumables used to hold, move, and process samples and reagents: vessels (tubes, vials, bottles, flasks, reservoirs), microplates and aluminum blocks, pipette tips and tip racks, racks, lids and seals, filters, columns, and culture ware. Labware is the passive counterpart of laboratory equipment (LEQ). LWO is grounded in BFO material entity and cross-mapped to OBI where OBI provides a matching concept."
 import: ../imports/bfo.obo
 import: ../imports/iao.owl
 import: ../imports/obi.obo

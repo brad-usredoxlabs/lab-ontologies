@@ -23,7 +23,7 @@ lines resolve against the `imports/` dir inside).
 
 | Field | Value |
 |---|---|
-| Name | Labware Ontology |
+| Name | Laboratory Ware Ontology |
 | Acronym | LWO |
 | Short name | lwo |
 | Description | An ontology of laboratory labware — the physical containers and consumables used to hold, move, and process samples and reagents: vessels (tubes, vials, bottles, flasks, reservoirs), microplates and aluminum blocks, pipette tips and tip racks, racks, lids and seals, filters, columns, and culture ware. LWO is grounded in BFO material entity and cross-mapped to OBI where OBI provides a matching concept. The passive counterpart of laboratory equipment (LEQ). |
