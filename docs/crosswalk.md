@@ -250,6 +250,79 @@ Notes:
   NEST line.
 - OBI has no trough/reservoir container term, so no OBI xref applies.
 
+### Hamilton — Microlab STAR / STARlet / VANTAGE — tips, carriers, troughs
+
+Inventory verified against PLR `resources/hamilton/` (14 constructor
+files) and the Hamilton Microlab STAR brochure (info.hamiltoncompany.com/
+view/449349329/). **Key correction to the aspect:** there is no
+"1000-channel head." Hamilton's high-channel heads are the **CO-RE 96-
+and 384-Multi-Probe Heads (MPH)** — the "1000" in Hamilton part naming
+refers to tip *volume* (1000 µL CO-RE tips / PLR
+`hamilton_core_gripper_1000ul_*`), not channel count. Single-channel
+heads (1, 8-channel) use disposable CO-RE tips in SBS racks; the
+CO-RE 96/384 MPH load a whole 96- or 384-well plate of tips at once.
+Disposable tips and fixed tips both exist: single/8-channel CO-RE heads
+take disposable tips, and the classic Hamilton fixed-tip head (the
+"core gripper") is the LWO:0000143 form.
+
+**Disposable tip racks** (96-position SBS, 122.4 x 82.6 mm, 9 mm pitch
+→ LWO:0000145; high-volume 24-position 4 x 6 @ 18 mm → LWO:0000139):
+
+| Hamilton cat. no. | Verified description | LWO class |
+|---|---|---|
+| 235900 / 235935 | 96 x 10 µL low-volume tip rack (non- / sterile) | LWO:0000145 96-position tip rack |
+| 235936 / 235901 | 96 x 10 µL low-volume tip rack, **with filter** | LWO:0000142 (filtered) — LWO:0000145 rack form |
+| 235948 / 235979 / 235829 | 96 x 50 µL tip rack, with filter (clear/non-sterile) | LWO:0000142 — LWO:0000145 rack form |
+| 235966 / 235978 | 96 x 50 µL tip rack, no filter | LWO:0000145 96-position tip rack |
+| 235947 / 235964 / 235987 | 96 x 50 µL **nested** tip rack (nestable) | LWO:0000145 96-position tip rack |
+| 235830 / 235903 / 235938 | 96 x 300 µL standard tip rack, with filter | LWO:0000142 — LWO:0000145 rack form |
+| 235834 / 235902 / 235937 | 96 x 300 µL standard tip rack, no filter | LWO:0000145 96-position tip rack |
+| 235646 | 96 x 300 µL slim tip rack, with filter (CO-RE II conductive) | LWO:0000142 — LWO:0000145 rack form |
+| 235449 | 96 x 300 µL ultra-wide (1.55 mm orifice) tip rack, with filter | LWO:0000142 — LWO:0000145 rack form |
+| 235820 / 235905 / 235940 | 96 x 1000 µL high-volume tip rack, with filter | LWO:0000142 — LWO:0000145 rack form |
+| 235822 / 235904 / 235939 | 96 x 1000 µL high-volume tip rack, no filter | LWO:0000145 96-position tip rack |
+| 184021 / 184023 | 24 x 4 mL tip rack, with filter, landscape (4 x 6 @ 18 mm) | LWO:0000142 — LWO:0000139 24-position tip rack |
+| 184020 / 184022 | 24 x 5 mL tip rack, no filter, landscape (4 x 6 @ 18 mm) | LWO:0000139 24-position tip rack |
+
+**Tip carriers** (a rack that holds several tip racks as one deck unit
+→ new class LWO:0000148):
+
+| Hamilton part (PLR constructor) | Verified description | LWO class |
+|---|---|---|
+| TIP_CAR_288 | carrier for 3 x 96-tip racks, portrait | LWO:0000148 multi-tip-rack carrier |
+| TIP_CAR_384 | carrier for 4 x 96-tip racks, landscape | LWO:0000148 multi-tip-rack carrier |
+| TIP_CAR_480 | carrier for 5 x 96-tip racks, landscape | LWO:0000148 multi-tip-rack carrier |
+| TIP_CAR_72_4mlTF | carrier for 3 x 4 mL filter tip racks, portrait | LWO:0000148 multi-tip-rack carrier |
+| TIP_CAR_96BC | carrier for 4 x 4 mL filter tip racks, landscape | LWO:0000148 multi-tip-rack carrier |
+| TIP_CAR_120BC_4mlTF | carrier for 5 x 4 mL filter tip racks, landscape | LWO:0000148 multi-tip-rack carrier |
+| TIP_CAR_120BC_5mlT | carrier for 5 x 5 mL tip racks, landscape | LWO:0000148 multi-tip-rack carrier |
+| TIP_CAR_NTR | carrier for 5 nestable tip-rack positions | LWO:0000148 multi-tip-rack carrier |
+
+**Other Hamilton deck labware** (all map to existing LWO classes):
+
+| Hamilton cat. no. / part | Verified description | LWO class |
+|---|---|---|
+| 56694-01 / -02 | 60 mL self-standing V-bottom trough, with lid (black = conductive) | LWO:0000118 trough |
+| 194052 | 120 mL self-standing V-bottom trough, no lid | LWO:0000118 trough |
+| 56695-01 / -02 | 200 mL self-standing V-bottom trough, with lid (black = conductive) | LWO:0000118 trough |
+| 185436 (Trough_CAR_4R200) | trough carrier, 4 x 200 mL, 2 tracks wide | LWO:0000118 trough (carrier = LWO:0000150 rack) |
+| 53646-01 (Trough_CAR_5R60) | trough carrier, 5 x 60 mL, 1 track wide | LWO:0000118 trough (carrier = LWO:0000150 rack) |
+| 173400 (Tube_CAR_24) / Tube_CAR_32 | tube carrier, 24- or 32-position | LWO:0000151 tube rack |
+| 188182 (Hamilton_96_adapter) | adapter for 96-well PCR plate, plunged (non-SBS footprint) | LWO:0000193 deck adapter |
+| 188229 / 188042 (MFX DWP flat / metal-tapped) | MFX deep-well plate holder module | LWO:0000194 plate holder |
+| MFX_CAR_P3 / L5 / shaker carriers | MFX deck module carriers (shaker/plate/holder modules) | LWO:0000150 rack (module carrier) |
+
+Notes:
+- The 24-position 4/5 mL tip rack is genuinely new to LWO (existing
+  LWO:0000138 48-position is a different 48-tip format) — added
+  **LWO:0000139**. The multi-tip-rack carrier is also genuinely new —
+  added **LWO:0000148** (is_a LWO:0000150 rack).
+- CO-RE is a tip-coupling technology/brand line (CO-RE II = newer
+  generation), not an ontology concept; it stays in the catalog. The
+  fixed-tip head is LWO:0000143.
+- No OBI xrefs: OBI's import has no tip-rack / tip-carrier / trough
+  container term (only OBI:0002488 pipette), so none apply.
+
 ## Annotation format (computable-lab side)
 
 ```yaml

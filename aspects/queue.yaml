@@ -100,7 +100,16 @@ aspects:
   - id: hamilton-labware
     title: Hamilton liquid handler labware
     ontology: lwo
-    status: pending
+    status: done
+    note: >
+      No LEQ edit (aspect is lwo-only). Corrected the aspect's
+      "1000-channel head" misnomer — Hamilton's high-channel heads are
+      CO-RE 96/384 Multi-Probe Heads; the "1000" is tip volume.
+      Added LWO:0000139 (24-position tip rack, 4/5 mL high-volume tips)
+      and LWO:0000148 (multi-tip-rack carrier) — both genuinely new;
+      refined LWO:0000145 def (24/48-position high-volume note);
+      confirmed fixed tip = LWO:0000143. Large Hamilton crosswalk
+      section (tip racks, tip carriers, troughs, tube/MFX carriers).
     detail: >
       Research Hamilton liquid handler (Microlab STAR, BioteXXN,
       VANTAGE) labware: fixed tips vs consumable tips, the 1000-channel

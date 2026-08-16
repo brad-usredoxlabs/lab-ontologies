@@ -366,6 +366,13 @@ is_a: LWO:0000144 ! tip rack
 synonym: "48 tip rack" EXACT []
 
 [Term]
+id: LWO:0000139
+name: 24-position tip rack
+def: "A tip rack with 24 tip positions in a 4 x 6 grid at an 18 millimeter pitch, used for high-volume 4000 and 5000 microliter tips too large for a 96-position rack; the classic form is the Hamilton 4 or 5 milliliter tip rack (cat. nos. 184020-184023)." [LWO:0000139]
+is_a: LWO:0000144 ! tip rack
+synonym: "24 tip rack" EXACT []
+
+[Term]
 id: LWO:0000140
 name: liquid-handling consumable
 def: "A labware item that is consumed (used up or discarded) during a liquid-handling operation: pipette tips, tip racks, and the like." [LWO:0000140]
@@ -404,7 +411,7 @@ synonym: "tip rack" EXACT []
 [Term]
 id: LWO:0000145
 name: 96-position tip rack
-def: "A tip rack with 96 tip positions in an 8 x 12 grid at a 9 millimeter pitch (the SBS 96 footprint), the standard format for automated liquid handling; the classic forms are the 10, 20, 300, and 1000 microliter racks; high-volume 5000 microliter tips use a 48-position rack instead." [LWO:0000145]
+def: "A tip rack with 96 tip positions in an 8 x 12 grid at a 9 millimeter pitch (the SBS 96 footprint), the standard format for automated liquid handling; the classic forms are the 10, 20, 300, and 1000 microliter racks (Hamilton's 10, 50, 300, and 1000 microliter SBS racks share this footprint); high-volume 4000 and 5000 microliter tips use a 24-position rack instead, and some brands' 5000 microliter tips use a 48-position rack." [LWO:0000145]
 is_a: LWO:0000144 ! tip rack
 synonym: "96 tip rack" EXACT []
 synonym: "96-channel tip rack" EXACT []
@@ -422,6 +429,14 @@ name: tip lid
 def: "A lid that seals a tip rack or tip box to maintain sterility before use." [LWO:0000147]
 is_a: LWO:0000160 ! lid or seal
 synonym: "tip rack lid" RELATED []
+
+[Term]
+id: LWO:0000148
+name: multi-tip-rack carrier
+def: "A rack that holds several tip racks as a single unit on a robot deck, so the deck can load, exchange, and index multiple racks at once; the classic form is the Hamilton tip carrier holding three to five 96-position tip racks (e.g. TIP_CAR_288, TIP_CAR_384, TIP_CAR_480) or three to five 4 or 5 milliliter tip racks (e.g. TIP_CAR_72_4mlTF, TIP_CAR_120BC_5mlT)." [LWO:0000148]
+is_a: LWO:0000150 ! rack
+synonym: "tip carrier" EXACT []
+synonym: "tip rack carrier" EXACT []
 
 [Term]
 id: LWO:0000150
