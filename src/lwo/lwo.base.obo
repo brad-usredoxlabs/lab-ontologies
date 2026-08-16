@@ -352,6 +352,20 @@ def: "An aluminum block with 96 positions in an 8 x 12 grid, each sized for a 0.
 is_a: LWO:0000134 ! aluminum block
 
 [Term]
+id: LWO:0000137
+name: 384-position tip rack
+def: "A tip rack holding 384 tips in a 16 x 24 grid at a 4.5 millimeter pitch (the SBS 384 footprint), the standard format for low-volume tips on high-channel-count automation heads; the classic forms are the 12.5 and 125 microliter racks." [LWO:0000137]
+is_a: LWO:0000144 ! tip rack
+synonym: "384 tip rack" EXACT []
+
+[Term]
+id: LWO:0000138
+name: 48-position tip rack
+def: "A tip rack holding 48 tips, used for high-volume tips too large for a 96-position rack; the classic form is the 5000 microliter tip rack." [LWO:0000138]
+is_a: LWO:0000144 ! tip rack
+synonym: "48 tip rack" EXACT []
+
+[Term]
 id: LWO:0000140
 name: liquid-handling consumable
 def: "A labware item that is consumed (used up or discarded) during a liquid-handling operation: pipette tips, tip racks, and the like." [LWO:0000140]
@@ -390,9 +404,10 @@ synonym: "tip rack" EXACT []
 [Term]
 id: LWO:0000145
 name: 96-position tip rack
-def: "A tip rack with 96 tip positions in an 8 x 12 grid, the standard format for automated liquid handling; the classic forms are the 10, 20, 300, 1000, and 5000 microliter racks." [LWO:0000145]
+def: "A tip rack with 96 tip positions in an 8 x 12 grid at a 9 millimeter pitch (the SBS 96 footprint), the standard format for automated liquid handling; the classic forms are the 10, 20, 300, and 1000 microliter racks; high-volume 5000 microliter tips use a 48-position rack instead." [LWO:0000145]
 is_a: LWO:0000144 ! tip rack
 synonym: "96 tip rack" EXACT []
+synonym: "96-channel tip rack" EXACT []
 
 [Term]
 id: LWO:0000146

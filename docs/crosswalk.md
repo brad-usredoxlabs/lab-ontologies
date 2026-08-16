@@ -96,6 +96,48 @@ Items in OT/PLR that need an LWO class before they can be annotated:
 
 The gap table is the input to the Phase 5 researcher queue.
 
+## Vendor product rows (brand → LWO class)
+
+Brands and SKUs are catalog data, not ontology classes. These rows
+anchor the ontology concepts to real product lines.
+
+### Integra Biosciences GRIPTIPS (Eppendorf) — automation tips
+
+Integra's automation tips are sold in fixed-format racks; the rack
+format, not the tip volume, selects the LWO class:
+
+| Integra product (SKU) | Format | LWO class |
+|---|---|---|
+| GRIPTIPS 12.5 µL, 384 tips/rack (e.g. 6404) | 384-position, 16 x 24, SBS 384 | LWO:0000137 384-position tip rack |
+| GRIPTIPS 125 µL, 384 tips/rack (6463), low-retention (6563) | 384-position, 16 x 24, SBS 384 | LWO:0000137 384-position tip rack |
+| GRIPTIPS 300 µL, 96 tips/rack (V96 line) | 96-position, 8 x 12, SBS 96 | LWO:0000145 96-position tip rack |
+| GRIPTIPS 1250 µL, 96 tips/rack (6445), low-retention (6543) | 96-position, 8 x 12, SBS 96 | LWO:0000145 96-position tip rack |
+| GRIPTIPS 5000 µL, 48 tips/rack | 48-position | LWO:0000138 48-position tip rack |
+| GRIPTIPS ECO racks (refillable 96- and 384-config, 300/1250 µL, low retention) | 96- or 384-position | LWO:0000145 / LWO:0000137 |
+| GRIPTIPS filter variants (any volume) | per format above | LWO:0000142 filtered pipette tip (tip), rack class per format |
+| GRIPTIPS low-retention (any volume) | per format above | LWO:0000141 pipette tip (no LWO class for low retention yet) |
+
+Compatibility (Integra): 12.5 µL tips → 2/10/12.5/20 µL pipettes and
+384-channel heads; 125 µL tips → 50/100/125 µL pipettes, MINI 96,
+VIAFLO 96/384 heads; 1250 µL tips → 1000/1250 µL pipettes, MINI 96,
+VIAFLO 96/384 heads.
+
+### Eppendorf — robotic tips
+
+| Eppendorf product | Format | LWO class |
+|---|---|---|
+| eptips for epMotion 96 / 96xl (96-channel heads, up to 1000 µL) | 96-position | LWO:0000145 96-position tip rack |
+| eptips for 8-channel heads (8-position strip racks) | 8-position strip | LWO:0000144 tip rack (no 8-position class yet) |
+| eptips reusable tip box (reusable, not disposable) | box of reusable tips | LWO:0000144 tip rack — def says consumable; see gap note |
+| CombITips advanced (single/8-channel manual) | single or 8-strip | LWO:0000141 pipette tip |
+
+Notes:
+- Eppendorf's 96-channel heads (epMotion 96, 96xl, and robot
+  96-channel modules) use 96-position SBS racks — covered by
+  LWO:0000145.
+- OBI has no "pipette tip" class (only OBI:0002488 pipette, the
+  device), so LWO tip classes carry no OBI xref.
+
 ## Annotation format (computable-lab side)
 
 ```yaml

@@ -21,7 +21,13 @@ aspects:
   - id: integra-pipette-tips
     title: Integra / Eppendorf pipette tips for automation
     ontology: lwo
-    status: pending
+    status: done
+    note: >
+      Added LWO:0000137 (384-position tip rack) and LWO:0000138
+      (48-position tip rack) under LWO:0000144; refined LWO:0000145
+      def (5000 uL uses 48-position racks, not 96) + EXACT
+      "96-channel tip rack" synonym; Integra/Eppendorf product rows
+      in docs/crosswalk.md.
     detail: >
       Research Integra/Eppendorf brand pipette tip lines for automated
       liquid handling (Bravo, Hamilton, etc.): 96-channel tip families
