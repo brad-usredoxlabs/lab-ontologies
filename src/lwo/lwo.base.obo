@@ -284,7 +284,7 @@ synonym: "96-well microplate" EXACT []
 [Term]
 id: LWO:0000127
 name: PCR plate
-def: "A 96-well plate with a nominal well volume of 50 to 200 microliters and a full skirt, designed for use in a thermal cycler; wells are typically flat-bottomed with a low volume footprint." [LWO:0000127]
+def: "A 96-well plate with a nominal well volume of 50 to 200 microliters (0.1 milliliter being the standard PCR format) and a full skirt, designed for use in a thermal cycler; wells are typically flat-bottomed with a low volume footprint." [LWO:0000127]
 is_a: LWO:0000126 ! 96-well plate
 synonym: "pcr plate" EXACT []
 synonym: "pcr well plate" EXACT []
@@ -292,7 +292,7 @@ synonym: "pcr well plate" EXACT []
 [Term]
 id: LWO:0000128
 name: assay plate
-def: "A 96-well plate with a nominal well volume of 100 to 500 microliters, designed for biochemical and cell-based assays; typically flat-bottomed and available in clear, white, or black." [LWO:0000128]
+def: "A 96-well plate with a nominal well volume of 100 to 500 microliters, designed for biochemical and cell-based assays; available in clear, white, or black with a flat or round (U-shaped) bottom — the round bottom is the classic form for cell-based assays (e.g. Corning 3797)." [LWO:0000128]
 is_a: LWO:0000126 ! 96-well plate
 synonym: "assay well plate" RELATED []
 
@@ -312,7 +312,7 @@ synonym: "deep well plate" EXACT []
 [Term]
 id: LWO:0000131
 name: cell culture plate
-def: "A well plate with a tissue-culture-treated bottom surface, used for the growth of adherent cells; available in 6 to 384 well formats." [LWO:0000131]
+def: "A well plate with a tissue-culture-treated bottom surface, used for the growth of adherent cells; available in 6 to 384 well formats, in flat or round bottom geometry, and in clear, white, or black walls with a clear flat or round bottom (e.g. Corning 3610 white TC-treated, 3603 black TC-treated, 3798 round-bottom TC-treated)." [LWO:0000131]
 is_a: LWO:0000121 ! well plate
 synonym: "tissue culture plate" EXACT []
 synonym: "tc-treated plate" RELATED []

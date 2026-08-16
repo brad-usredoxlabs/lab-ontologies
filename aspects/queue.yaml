@@ -61,7 +61,13 @@ aspects:
   - id: corning-microplate-catalog
     title: Corning microplate catalog (3632, 3635, 3795, etc.)
     ontology: lwo
-    status: pending
+    status: done
+    note: >
+      No new classes: verified Corning specs against Corning's own
+      ecatalog PDFs; 3632 = white flat-bottom assay (not clear
+      round), 3635 = UV plate, 3795/3798 = round-bottom assay / TC
+      (not 0.1mL PCR); refined LWO:0000127/128/131 defs; added
+      13-row Corning section to docs/crosswalk.md.
     detail: >
       Research Corning microplate catalog numbers and map each to an
       LWO class: 3632 (96-well, clear, round bottom), 3635 (96-well

@@ -176,6 +176,45 @@ Notes:
   LWO:0000126 / LWO:0000117), no Bravo robot definition; the Bravo is
   an OpenTrons-native instrument.
 
+### Corning (Costar) — microplate catalog
+
+All facts below verified against Corning's own product-description
+PDFs (certs-ecatalog.corning.com, revisions dated 2026). Catalog
+numbers are catalog data — the LWO class is selected by the plate
+concept, and bottom geometry / skirt / treatment are data values on
+the LWO:0000004 / LWO:0000010 / LWO:0000007 properties (no new LWO
+classes needed for the Corning lines).
+
+| Corning (Costar) catalog no. | Verified description | LWO class |
+|---|---|---|
+| 3506 | 6-well cell culture plate, flat bottom, with lid, 5 mL working/well | LWO:0000122 6-well plate |
+| 3513 | 12-well cell culture plate, flat bottom, with lid, 3 mL working/well | LWO:0000123 12-well plate |
+| 3548 | 48-well cell culture plate, flat bottom, with lid, 1 mL working/well | LWO:0000125 48-well plate |
+| 3599 | 96-well cell culture plate, flat bottom, with lid | LWO:0000126 96-well plate |
+| 3542 | 384-well low-volume TC-treated black plate, clear flat bottom, with lid, 50 µL total/well | LWO:0000132 384-well plate (TC variant → LWO:0000131 treatment property) |
+| 3603 | 96-well TC-treated **black** plate, clear flat bottom, low-evaporation lid | LWO:0000131 cell culture plate |
+| 3610 | 96-well TC-treated **white** plate, clear flat bottom, low-evaporation lid | LWO:0000131 cell culture plate |
+| 3615 | 96-well black plate with ultra-thin clear bottom, non-treated (imaging) | LWO:0000128 assay plate |
+| 3632 | 96-well **white** plate with clear **flat** bottom, non-treated (aspect said "clear, round bottom" — wrong) | LWO:0000128 assay plate |
+| 3635 | 96-well UV plate: virgin acrylic walls, fluorinated-chlorinated thermoplastic bottom (aspect said "flat" PS — it is the UV-transmitting line) | LWO:0000128 assay plate |
+| 3795 | 96-well assay plate, **round bottom**, clear, non-treated, 360 µL working/well (aspect said "PCR, full skirt" — wrong; it is not a 0.1 mL cycler plate) | LWO:0000128 assay plate |
+| 3797 | 96-well assay plate, medium binding, **round bottom**, clear, 360 µL working/well | LWO:0000128 assay plate |
+| 3798 | 96-well **TC-treated**, clear, **round bottom**, 360 µL working/well (aspect said "PCR 0.1 mL" — wrong) | LWO:0000131 cell culture plate |
+| deep-well 96 lines (1 / 2 / 2.4 mL; catalog numbers not in the current ecatalog PDF set) | deep, narrow 96-well plates for storage/reagent prep | LWO:0000130 deep-well plate |
+| 0.1 mL 96-well PCR plates (full skirt, flat bottom, thermal cycler) | the canonical PCR format — maps to LWO:0000127; note 3795/3798 are *not* this line | LWO:0000127 PCR plate |
+
+Notes:
+- Corning distinguishes plates by bottom geometry (flat vs round),
+  wall color (clear/white/black), and surface treatment (non-treated
+  vs TC-treated); all three dimensions are LWO data properties
+  (LWO:0000004 bottom geometry, LWO:0000007 surface treatment), not
+  separate classes. The existing microplate subclasses (LWO:0000126
+  96-well, LWO:0000127 PCR, LWO:0000128 assay, LWO:0000130 deep-well,
+  LWO:0000131 TC) are sufficient for the whole catalog.
+- The 96-well Corning assay lines are ~0.36 mL working volume,
+  inside the LWO:0000128 def range (100–500 µL); the 0.1 mL PCR
+  format sits inside LWO:0000127's 50–200 µL range.
+
 ## Annotation format (computable-lab side)
 
 ```yaml
